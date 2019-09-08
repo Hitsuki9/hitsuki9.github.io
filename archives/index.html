@@ -22,7 +22,7 @@
     <meta name="description" content="前端萌新">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Hitsuki&#39;s Blog</title>
+    <title>Hitsuki9&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -351,12 +351,18 @@
                 <span>《ECMAScript 6 入门》知识点整理</span>
         </a>
         <div class="abstract-content">
-            let和const命令
+            let和const命令let命令不存在变量提升var命令会发生“变量提升”现象，即变量可以在声明之前使用，值为undefined。
+12345678console.log(foo); // 输出undefinedvar foo = 2;// 等价于var foo; // undefinedconsole.log(foo); // 输出undefinedfoo = 2;
+
+let命令所声明的变量一定要在声明后使用，否则报ReferenceError错误。
+
+暂时性死区只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。
+在代码块内，使用le...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/29</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/08</span>
             </div>
             <!-- tags  -->
             
@@ -547,8 +553,6 @@ ECMAScript：提供核心语言功能；DOM：提供访问和操作网页内容�
     
     
     
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 3
@@ -567,7 +571,7 @@ ECMAScript：提供核心语言功能；DOM：提供访问和操作网页内容�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/29</span><a class="archive-post-title" href= "/ecmascript-2015/" >《ECMAScript 6 入门》知识点整理</a>
+            <span class="archive-post-date">09/08</span><a class="archive-post-title" href= "/ecmascript-2015/" >《ECMAScript 6 入门》知识点整理</a>
         </li>
     
     
@@ -628,6 +632,8 @@ jsonContent:
 </div>
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="创作集"><span class="iconfont-archer">&#xe60a;</span>创作集</span>
     
         <span class="sidebar-category-name" data-categories="转载"><span class="iconfont-archer">&#xe60a;</span>转载</span>
     
