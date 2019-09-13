@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">63</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -404,7 +404,108 @@ height:50vh;
         <h1 id="打包流程"><a href="#打包流程" class="headerlink" title="打包流程"></a>打包流程</h1><p><img src="../assets/webpack.jpg" alt="webpack打包流程" title="webpack打包流程"></p>
 <h1 id="entry"><a href="#entry" class="headerlink" title="entry"></a>entry</h1><p><code>string | [string] | object { &lt;key&gt;: string | [string] } | (function: () => string | [string] | object { &lt;key&gt;: string | [string] })</code></p>
 <p>如果传入一个字符串或字符串数组，chunk 会被命名为 <code>main</code>。如果传入一个对象，则每个键(key)会是 chunk 的名称。</p>
-<h1 id="output"><a href="#output" class="headerlink" title="output"></a>output</h1>
+<h1 id="output"><a href="#output" class="headerlink" title="output"></a>output</h1><h2 id="output-filename"><a href="#output-filename" class="headerlink" title="output.filename"></a>output.filename</h2><p><code>string</code> <code>function</code></p>
+<p>此选项决定了每个输出 bundle 的名称。这些 bundle 将写入到 <code>output.path</code> 选项指定的目录下。</p>
+<p>对于单个入口起点，<code>filename</code> 会是一个静态名称。</p>
+<p>当通过多个入口起点(entry point)、代码拆分(code splitting)或各种插件(plugin)创建多个 bundle，应该使用以下替换方式来赋予每个 bundle 一个唯一的名称。</p>
+<ol>
+<li>使用入口名称</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filename: <span class="string">"[name].bundle.js"</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>使用内部 chunk id</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filename: <span class="string">"[id].bundle.js"</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>使用每次构建过程中，唯一的 hash 生成</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filename: <span class="string">"[name].[hash].bundle.js"</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>使用基于每个 chunk 内容的 hash</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filename: <span class="string">"[chunkhash].bundle.js"</span></span><br></pre></td></tr></table></figure>
+
+<p><code>[hash]</code> 和 <code>[chunkhash]</code> 的长度可以使用 <code>[hash:16]</code>（默认为20）来指定，或者通过指定<code>output.hashDigestLength</code> 在全局配置长度。</p>
+<blockquote>
+<p>在使用 <code>ExtractTextWebpackPlugin</code> 时，可以用 <code>[contenthash]</code> 来获取提取文件的 hash。</p>
+</blockquote>
+<p><strong>与 <code>output.chunkFilename</code> 的区别：<code>chunkFilename</code> 是未被列在 <code>entry</code> 中，却又需要被打包出来的文件的命名配置。在按需加载（异步）模块的时候，模块的文件是没有被列在 entry 中的。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'...'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>&nbsp;</p>
+<h2 id="output-path"><a href="#output-path" class="headerlink" title="output.path"></a>output.path</h2><p><code>string</code></p>
+<p>对应一个输出打包结果的<strong>绝对路径</strong>。</p>
+<p>&nbsp;</p>
+<h2 id="output-libraryTarget"><a href="#output-libraryTarget" class="headerlink" title="output.libraryTarget"></a>output.libraryTarget</h2><p><code>string</code></p>
+<p>配置如何暴露 library，此选项与分配给 <code>output.library</code> 的值一同使用。</p>
+<p>3.3.1 ~ 3.3.2 为暴露为一个变量。</p>
+<p>3.3.3 ~ 3.3.6 为暴露给对象的一个属性。</p>
+<p>3.3.7 ~ 3.3.9 为暴露为一个模块。</p>
+<h3 id="libraryTarget-“var”"><a href="#libraryTarget-“var”" class="headerlink" title="libraryTarget: “var”"></a>libraryTarget: “var”</h3><p>默认值，当 library 加载完成，入口起点的返回值将分配给一个变量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> MyLibrary = _entry_return_;</span><br><span class="line"></span><br><span class="line">MyLibrary.doSomething();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>当使用此选项时，将 <code>output.library</code> 设置为空，会因为没有变量导致无法赋值。</p>
+</blockquote>
+<hr>
+<h3 id="libraryTarget-“assign”"><a href="#libraryTarget-“assign”" class="headerlink" title="libraryTarget: “assign”"></a>libraryTarget: “assign”</h3><p>这将产生一个隐含的全局变量，可能会潜在地重新分配到全局中已存在的值（谨慎使用）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MyLibrary = _entry_return_; <span class="comment">// 如果 MyLibrary 在作用域中未在前面代码进行定义，则你的 library 将被设置在全局作用域内</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="libraryTarget-“this”"><a href="#libraryTarget-“this”" class="headerlink" title="libraryTarget: “this”"></a>libraryTarget: “this”</h3><p>入口起点的返回值将分配给 <code>this</code> 的一个属性（由 <code>output.library</code> 定义）下。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>[<span class="string">"MyLibrary"</span>] = _entry_return_;</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.MyLibrary.doSomething();</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="libraryTarget-“window”"><a href="#libraryTarget-“window”" class="headerlink" title="libraryTarget: “window”"></a>libraryTarget: “window”</h3><p>入口起点的返回值将使用 <code>output.library</code> 中定义的值，分配给 <code>window</code> 对象的这个属性下。</p>
+<hr>
+<h3 id="libraryTarget-“global”"><a href="#libraryTarget-“global”" class="headerlink" title="libraryTarget: “global”"></a>libraryTarget: “global”</h3><p>同 <code>libraryTarget: "window"</code> 。</p>
+<hr>
+<h3 id="libraryTarget-“commonjs”"><a href="#libraryTarget-“commonjs”" class="headerlink" title="libraryTarget: “commonjs”"></a>libraryTarget: “commonjs”</h3><p>入口起点的返回值将使用 <code>output.library</code> 中定义的值，分配给 <code>exports</code> 对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exports[<span class="string">"MyLibrary"</span>] = _entry_return_;</span><br><span class="line"></span><br><span class="line"><span class="built_in">require</span>(<span class="string">"MyLibrary"</span>).doSomething();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>不设置 <code>output.library</code> 将导致由入口起点返回的所有属性，都会被赋值给给定的对象，且并不会检查现有的属性名是否存在。（3.3.3 ~ 3.3.6）</p>
+</blockquote>
+<hr>
+<h3 id="libraryTarget-“commonjs2”"><a href="#libraryTarget-“commonjs2”" class="headerlink" title="libraryTarget: “commonjs2”"></a>libraryTarget: “commonjs2”</h3><p>入口起点的返回值将分配给 <code>module.exports</code> 对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = _entry_return_;</span><br><span class="line"></span><br><span class="line"><span class="built_in">require</span>(<span class="string">"MyLibrary"</span>).doSomething();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>output.library</code> 会被省略，因此对于此特定的 <code>output.libraryTarget</code>，无需再设置 <code>output.library</code> 。</p>
+</blockquote>
+<hr>
+<h3 id="libraryTarget-“amd”"><a href="#libraryTarget-“amd”" class="headerlink" title="libraryTarget: “amd”"></a>libraryTarget: “amd”</h3><p>将 library 暴露为 AMD 模块。</p>
+<hr>
+<h3 id="libraryTarget-“umd”"><a href="#libraryTarget-“umd”" class="headerlink" title="libraryTarget: “umd”"></a>libraryTarget: “umd”</h3><p>将 library 暴露为所有的模块定义下都可运行的方式。它将在 CommonJS, AMD 环境下运行，或将模块导出到 <code>global</code> 下的变量。（<strong>万金油</strong>）</p>
+<blockquote>
+<p>省略 <code>output.library</code> 会导致将入口起点返回的所有属性，直接赋值给 root 对象。（同3.3.6引用）</p>
+</blockquote>
+<p>可以将 <code>output.library</code> 指定为一个对象，用于给每个 target 起不同的名称。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">  library: &#123;</span><br><span class="line">    root: <span class="string">"MyLibrary"</span>,</span><br><span class="line">    amd: <span class="string">"my-library"</span>,</span><br><span class="line">    commonjs: <span class="string">"my-common-library"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  libraryTarget: <span class="string">"umd"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="libraryTarget-“jsonp”"><a href="#libraryTarget-“jsonp”" class="headerlink" title="libraryTarget: “jsonp”"></a>libraryTarget: “jsonp”</h3><p>将把入口起点的返回值，包裹到一个 jsonp 包装容器中。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MyLibrary(_entry_return_);</span><br></pre></td></tr></table></figure>
+
+<p>&nbsp;</p>
+<h2 id="output-libraryExport"><a href="#output-libraryExport" class="headerlink" title="output.libraryExport"></a>output.libraryExport</h2><p><code>string</code> 或 <code>string[]</code></p>
+<p>配置通过 <code>output.libraryTarget</code> 暴露的模块，可以使用于任何的 <code>output.libraryTarget</code> 值。以下用 <code>libraryTarget: "var"</code> 为例。</p>
+<h3 id="libraryExport-“default”"><a href="#libraryExport-“default”" class="headerlink" title="libraryExport: “default”"></a>libraryExport: “default”</h3><p>将入口起点返回值的默认导出分配给 target。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> MyDefaultModule = _entry_return_.default;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="libraryExport-“MyModule”"><a href="#libraryExport-“MyModule”" class="headerlink" title="libraryExport: “MyModule”"></a>libraryExport: “MyModule”</h3><p>将指定的 library 模块分配给 target。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> MyModule = _entry_return_.MyModule;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="libraryExport-“MyModule”-“MySubModule”"><a href="#libraryExport-“MyModule”-“MySubModule”" class="headerlink" title="libraryExport: [“MyModule”, “MySubModule”]"></a>libraryExport: [“MyModule”, “MySubModule”]</h3><p>数组被解析为要分配给 target 的 library 模块的路径。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> MySubModule = _entry_return_.MyModule.MySubModule;</span><br></pre></td></tr></table></figure>
+
+<p>&nbsp;</p>
+<h1 id="resolve"><a href="#resolve" class="headerlink" title="resolve"></a>resolve</h1>
     </article>
     <!-- license  -->
     <!-- 
@@ -412,7 +513,7 @@ height:50vh;
             <p>原文作者：<a href="http://hitsuki9.github.io">Histuki9</a>
             <p>原文链接：<a href="http://hitsuki9.github.io/webpack4/">http://hitsuki9.github.io/webpack4/</a>
             <p>发表日期：<a href="http://hitsuki9.github.io/webpack4/">September 13th 2019, 12:00:00 am</a>
-            <p>更新日期：<a href="http://hitsuki9.github.io/webpack4/">September 13th 2019, 2:19:46 am</a>
+            <p>更新日期：<a href="http://hitsuki9.github.io/webpack4/">September 14th 2019, 1:23:48 am</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
      -->
@@ -533,7 +634,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#打包流程"><span class="toc-number">1.</span> <span class="toc-text">打包流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#entry"><span class="toc-number">2.</span> <span class="toc-text">entry</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#output"><span class="toc-number">3.</span> <span class="toc-text">output</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#打包流程"><span class="toc-number">1.</span> <span class="toc-text">打包流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#entry"><span class="toc-number">2.</span> <span class="toc-text">entry</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#output"><span class="toc-number">3.</span> <span class="toc-text">output</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#output-filename"><span class="toc-number">3.1.</span> <span class="toc-text">output.filename</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#output-path"><span class="toc-number">3.2.</span> <span class="toc-text">output.path</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#output-libraryTarget"><span class="toc-number">3.3.</span> <span class="toc-text">output.libraryTarget</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#libraryTarget-“var”"><span class="toc-number">3.3.1.</span> <span class="toc-text">libraryTarget: “var”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#libraryTarget-“assign”"><span class="toc-number">3.3.2.</span> <span class="toc-text">libraryTarget: “assign”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#libraryTarget-“this”"><span class="toc-number">3.3.3.</span> <span class="toc-text">libraryTarget: “this”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#libraryTarget-“window”"><span class="toc-number">3.3.4.</span> <span class="toc-text">libraryTarget: “window”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#libraryTarget-“global”"><span class="toc-number">3.3.5.</span> <span class="toc-text">libraryTarget: “global”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#libraryTarget-“commonjs”"><span class="toc-number">3.3.6.</span> <span class="toc-text">libraryTarget: “commonjs”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#libraryTarget-“commonjs2”"><span class="toc-number">3.3.7.</span> <span class="toc-text">libraryTarget: “commonjs2”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#libraryTarget-“amd”"><span class="toc-number">3.3.8.</span> <span class="toc-text">libraryTarget: “amd”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#libraryTarget-“umd”"><span class="toc-number">3.3.9.</span> <span class="toc-text">libraryTarget: “umd”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#libraryTarget-“jsonp”"><span class="toc-number">3.3.10.</span> <span class="toc-text">libraryTarget: “jsonp”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#output-libraryExport"><span class="toc-number">3.4.</span> <span class="toc-text">output.libraryExport</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#libraryExport-“default”"><span class="toc-number">3.4.1.</span> <span class="toc-text">libraryExport: “default”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#libraryExport-“MyModule”"><span class="toc-number">3.4.2.</span> <span class="toc-text">libraryExport: “MyModule”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#libraryExport-“MyModule”-“MySubModule”"><span class="toc-number">3.4.3.</span> <span class="toc-text">libraryExport: [“MyModule”, “MySubModule”]</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#resolve"><span class="toc-number">4.</span> <span class="toc-text">resolve</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
