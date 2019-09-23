@@ -417,7 +417,7 @@ height:50vh;
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">arg</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> arg;</span><br><span class="line">&#125;</span><br><span class="line">func() <span class="comment">// 报错</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">arg</span>) </span>&#123;</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">let</span> arg;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">func() <span class="comment">// 不报错</span></span><br></pre></td></tr></table></figure>
 
 <p>&nbsp;</p>
-<h2 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h2><p>ES5 只有全局作用域和函数作用域，ES6 中引入了块级作用域，块级作用域是由一对<code>{}</code>包裹的区域，包括条件语句和循环语句以及<code>try</code><code>catch</code>中的<code>{}</code>(<strong>不写<code>{}</code>则不存在块级作用域</strong>)。</p>
+<h2 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h2><p>ES5 只有全局作用域和函数作用域，ES6 中引入了块级作用域，块级作用域是由一对<code>{}</code>包裹的区域，包括条件语句和循环语句以及<code>try``catch</code>中的<code>{}</code>(<strong>不写<code>{}</code>则不存在块级作用域</strong>)。</p>
 <blockquote>
 <p>块级作用域可以防止：</p>
 <ol>
@@ -604,7 +604,7 @@ height:50vh;
             <p>原文作者：<a href="http://hitsuki9.github.io">Histuki9</a>
             <p>原文链接：<a href="http://hitsuki9.github.io/ecmascript-2015/">http://hitsuki9.github.io/ecmascript-2015/</a>
             <p>发表日期：<a href="http://hitsuki9.github.io/ecmascript-2015/">September 10th 2019, 12:00:00 am</a>
-            <p>更新日期：<a href="http://hitsuki9.github.io/ecmascript-2015/">September 12th 2019, 12:24:23 am</a>
+            <p>更新日期：<a href="http://hitsuki9.github.io/ecmascript-2015/">September 23rd 2019, 10:43:56 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
      -->
@@ -613,16 +613,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/vue-ssr/" title= "关于Vue SSR">
-                    <div class="nextTitle">关于Vue SSR</div>
+                <a href= "/git/" title= "Git 实用指南">
+                    <div class="nextTitle">Git 实用指南</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/hello-world/" title= "Hello World">
-                    <div class="prevTitle">Hello World</div>
+                <a href= "/vue-ssr/" title= "关于 Vue SSR">
+                    <div class="prevTitle">关于 Vue SSR</div>
                 </a>
             
         </li>
@@ -786,9 +786,24 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 5
+        Total : 6
         </div>
         <!-- search  -->
         
@@ -799,31 +814,27 @@ top:50vh;
     
     
     
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/vue-ssr/" >关于Vue SSR</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/23</span><a class="archive-post-title" href= "/webpack4/" >webpack4配置详解</a>
+            <span class="archive-post-date">09/23</span><a class="archive-post-title" href= "/webpack4/" >webpack4 配置详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/19</span><a class="archive-post-title" href= "/git/" >Git 实用指南</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/10</span><a class="archive-post-title" href= "/ecmascript-2015/" >《ECMAScript 6 入门》读书笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/08</span><a class="archive-post-title" href= "/vue-ssr/" >关于 Vue SSR</a>
         </li>
     
     
@@ -851,6 +862,8 @@ top:50vh;
     <div class="sidebar-tags-name">
     
         <span class="sidebar-tag-name" data-tags="前端"><span class="iconfont-archer">&#xe606;</span>前端</span>
+    
+        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -888,6 +901,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
     
         <span class="sidebar-category-name" data-categories="转载"><span class="iconfont-archer">&#xe60a;</span>转载</span>
+    
+        <span class="sidebar-category-name" data-categories="创作集"><span class="iconfont-archer">&#xe60a;</span>创作集</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
