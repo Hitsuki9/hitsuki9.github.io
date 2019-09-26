@@ -346,6 +346,83 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/vue/" >
+            
+                <span>vue</span>
+        </a>
+        <div class="abstract-content">
+            组件通信父组件 =&gt; 子组件属性 props特性 $attrs引用 refs子元素 $children 子元素不保证顺序
+子组件 =&gt; 父组件自定义事件 谁派发谁监听
+兄弟组件通过共同的父辈组件搭桥：$parent $root
+祖先和后代provide/inject
+任意两个组件vuex/事件总线
+插槽匿名插槽具名插槽作用域插槽
+表单组件需求分析
+
+数据收集：输入框，下拉选择框，单选框
+校验：单项校验，全局校验 事件激活
+
+双向绑定v-model语法糖 value 和 @input.sync
+v-bind展开对象
+inherited
+校验返回promise
+弹窗组件独立于vu...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/26</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "前端">前端</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/js-regexp/" >
+            
+                <span>JS 正则表达式</span>
+        </a>
+        <div class="abstract-content">
+            字符匹配正则表达式是匹配模式，要么匹配字符，要么匹配位置。
+模糊匹配横向模糊匹配横向模糊指的是，一个正则可匹配的字符串的长度不是固定的，可以是多种情况。
+其实现的方式是使用量词，譬如 {m,n}，表示连续出现最少 m 次，最多 n 次。
+正则 /ab{2,5}c/ 表示匹配这样一个字符串：第一个字符是 &quot;a&quot;，接下来是 2 到 5 个字符 &quot;b&quot;，最后是字符 &quot;c&quot;。
+1234let regex = /ab&#123;2,5&#125;c/g;let string = "abc abbc abbbc abbbbc abbbbbc...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/25</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "正则">正则</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/webpack4/" >
             
                 <span>webpack4 配置详解</span>
@@ -436,38 +513,6 @@ let命令所声明的变量一定要在声明后使用，否则报ReferenceError
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "前端">前端</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/vue-ssr/" >
-            
-                <span>关于 Vue SSR</span>
-        </a>
-        <div class="abstract-content">
-            SPA请求次数多 -》 首屏渲染速度慢SEO不友好
-客户端发送请求 -》 服务端将vue模板解析成html（包含首屏所有需要的异步数据） -》返回给浏览器进行首屏渲染 -》 同时转换为SPA
-缺点：1.开发条件受限，例如mouted生命周期函数无法使用2.服务端负载变大
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/08</span>
             </div>
             <!-- tags  -->
             
@@ -624,9 +669,28 @@ let命令所声明的变量一定要在声明后使用，否则报ReferenceError
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 6
+        Total : 7
         </div>
         <!-- search  -->
         
@@ -642,6 +706,16 @@ let命令所声明的变量一定要在声明后使用，否则报ReferenceError
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/26</span><a class="archive-post-title" href= "/vue/" >vue</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/25</span><a class="archive-post-title" href= "/js-regexp/" >JS 正则表达式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/23</span><a class="archive-post-title" href= "/webpack4/" >webpack4 配置详解</a>
         </li>
     
@@ -653,11 +727,6 @@ let命令所声明的变量一定要在声明后使用，否则报ReferenceError
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/10</span><a class="archive-post-title" href= "/ecmascript-2015/" >《ECMAScript 6 入门》读书笔记</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/08</span><a class="archive-post-title" href= "/vue-ssr/" >关于 Vue SSR</a>
         </li>
     
     
@@ -687,6 +756,8 @@ let命令所声明的变量一定要在声明后使用，否则报ReferenceError
         <span class="sidebar-tag-name" data-tags="前端"><span class="iconfont-archer">&#xe606;</span>前端</span>
     
         <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
+    
+        <span class="sidebar-tag-name" data-tags="正则"><span class="iconfont-archer">&#xe606;</span>正则</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

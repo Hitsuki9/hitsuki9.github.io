@@ -22,7 +22,7 @@
     <meta name="description" content="前端萌新">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Git 实用指南 · Hitsuki9&#39;s Blog</title>
+    <title>JS 正则表达式 · Hitsuki9&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >Hitsuki9&#39;s Blog.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Git 实用指南</a>
+                <a href="#" class="post-name">JS 正则表达式</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Git 实用指南
+            JS 正则表达式
             <!-- 404 -->
             
         </h1>
@@ -266,18 +266,18 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "git">git</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "正则">正则</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.7k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.4k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/09/19</span>
+                    <span class="post-intro-time">2019/09/25</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -401,107 +401,151 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="克隆仓库"><a href="#克隆仓库" class="headerlink" title="克隆仓库"></a>克隆仓库</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 远程仓库地址 [本地仓库的根目录名称]</span><br></pre></td></tr></table></figure>
+        <h1 id="字符匹配"><a href="#字符匹配" class="headerlink" title="字符匹配"></a>字符匹配</h1><p>正则表达式是匹配模式，要么匹配字符，要么匹配位置。</p>
+<h2 id="模糊匹配"><a href="#模糊匹配" class="headerlink" title="模糊匹配"></a>模糊匹配</h2><h3 id="横向模糊匹配"><a href="#横向模糊匹配" class="headerlink" title="横向模糊匹配"></a>横向模糊匹配</h3><p>横向模糊指的是，一个正则可匹配的字符串的长度不是固定的，可以是多种情况。</p>
+<p>其实现的方式是使用量词，譬如 <code>{m,n}</code>，表示连续出现最少 m 次，最多 n 次。</p>
+<p>正则 <code>/ab{2,5}c/</code> 表示匹配这样一个字符串：第一个字符是 <code>&quot;a&quot;</code>，接下来是 2 到 5 个字符 <code>&quot;b&quot;</code>，最后是字符 <code>&quot;c&quot;</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> regex = <span class="regexp">/ab&#123;2,5&#125;c/g</span>;</span><br><span class="line"><span class="keyword">let</span> string = <span class="string">"abc abbc abbbc abbbbc abbbbbc abbbbbbc"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(string.match(regex));</span><br><span class="line"><span class="comment">// =&gt; ["abbc", "abbbc", "abbbbc", "abbbbbc"]</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>match()</code> 方法可在字符串内检索指定的值，或找到一个或多个正则表达式的匹配。</p>
+</blockquote>
+<blockquote>
+<p><code>g</code> 是正则的一个修饰符，表示全局匹配，即在目标字符串中按顺序找到满足匹配模式的所有子串，强调的是“所有”，而不只是“第一个”。</p>
+</blockquote>
+<hr>
+<h3 id="纵向模糊匹配"><a href="#纵向模糊匹配" class="headerlink" title="纵向模糊匹配"></a>纵向模糊匹配</h3><p>纵向模糊指的是，一个正则匹配的字符串，具体到某一位字符时，它可以不是某个确定的字符，可以有多种可能。</p>
+<p>其实现的方式是使用字符组，譬如 <code>[abc]</code>，表示该字符是可以字符 <code>&quot;a&quot;</code>、<code>&quot;b&quot;</code>、<code>&quot;c&quot;</code> 中的任何一个。</p>
+<p><code>/a[123]b/</code> 可以匹配如下三种字符串： <code>&quot;a1b&quot;</code>、<code>&quot;a2b&quot;</code>、<code>&quot;a3b&quot;</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> regex = <span class="regexp">/a[123]b/g</span>;</span><br><span class="line"><span class="keyword">let</span> string = <span class="string">"a0b a1b a2b a3b a4b"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(string.match(regex));</span><br><span class="line"><span class="comment">// =&gt; ["a1b", "a2b", "a3b"]</span></span><br></pre></td></tr></table></figure>
 
 <p>&nbsp;</p>
-<h1 id="git目录"><a href="#git目录" class="headerlink" title=".git目录"></a>.git目录</h1><p>本地仓库（Local Repository），本地所有的版本信息都会存在这里。.git 所在的根目录称为 Git 的工作目录（Working Directory），它保存了你当前从仓库中签出（checkout）的内容。</p>
+<h2 id="字符组"><a href="#字符组" class="headerlink" title="字符组"></a>字符组</h2><h3 id="范围表示法"><a href="#范围表示法" class="headerlink" title="范围表示法"></a>范围表示法</h3><p>如 <code>[123456abcdefGHIJKLM]</code>，可以写成 <code>[1-6a-fG-M]</code>，即用连字符 <code>-</code> 来省略和简写。</p>
 <blockquote>
-<p>可通过在工作目录下输入 <code>git init</code> 命令创建 .git 目录。</p>
+<p>要匹配 <code>&quot;a&quot;</code>、<code>&quot;-&quot;</code>、<code>&quot;z&quot;</code> 这三者中任意一个字符，可以写成 <code>[-az]</code> 或 <code>[az-]</code> 或 <code>[a\-z]</code>，即要么放在开头，要么放在结尾，要么转义。</p>
 </blockquote>
+<hr>
+<h3 id="排除字符组"><a href="#排除字符组" class="headerlink" title="排除字符组"></a>排除字符组</h3><p>如 <code>[^abc]</code>，表示的是一个除了 <code>&quot;a&quot;</code>、<code>&quot;b&quot;</code>、<code>&quot;c&quot;</code>之外的任意一个字符。字符组的第一位放 <code>^</code>（脱字符），表示求反的概念。</p>
+<p>当然，也可以使用范围表示法。</p>
+<hr>
+<h3 id="常见的简写形式"><a href="#常见的简写形式" class="headerlink" title="常见的简写形式"></a>常见的简写形式</h3><table>
+<thead>
+<tr>
+<th>字符组</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\d</code></td>
+<td>表示 <code>[0-9]</code>。<br>记忆方式：其英文是 digit（数字）。</td>
+</tr>
+<tr>
+<td><code>\D</code></td>
+<td>表示 <code>[^0-9]</code>。</td>
+</tr>
+<tr>
+<td><code>\w</code></td>
+<td>表示 <code>[0-9a-zA-Z_]</code>。<br>记忆方式：其英文是 word，也称单词字符。</td>
+</tr>
+<tr>
+<td><code>\W</code></td>
+<td>表示 <code>[^0-9a-zA-Z_]</code>。</td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>表示 <code>[ \t\v\n\r\f]</code>。表示空白符，包括空格、水平制表符、垂直制表符、换行符、回车符、换页符。<br>记忆方式：其英文是 space。</td>
+</tr>
+<tr>
+<td><code>\S</code></td>
+<td>表示 <code>[^ \t\v\n\r\f]</code>。</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>表示 <code>[^\n\r\u2028\u2029]</code>。通配符，表示几乎任意字符，换行符、回车符、行分隔符和段分隔符除外。</td>
+</tr>
+</tbody></table>
+<p>如果要匹配任意字符可以使用 <code>[\d\D]</code>、<code>[\w\W]</code>、<code>[\s\S]</code> 和 <code>[^]</code> 中任何的一个。</p>
 <p>&nbsp;</p>
-<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><h2 id="branch"><a href="#branch" class="headerlink" title="branch"></a>branch</h2><p>对 <code>commit</code> 的引用。</p>
-<p>每一个 <code>commit</code> 都有一个唯一的指定方式——它的 SHA-1 校验和。两个 SHA-1 值的重复概率极低，所以可以使用这个 SHA-1 值来指代 <code>commit</code>，也可以只使用它的前几位来指代它，但毕竟这种没有任何含义的字符串是很难记忆的，所以 Git 提供了「引用」的机制：使用固定的字符串作为引用，指向某个 <code>commit</code>。</p>
+<h2 id="量词"><a href="#量词" class="headerlink" title="量词"></a>量词</h2><h3 id="简写形式"><a href="#简写形式" class="headerlink" title="简写形式"></a>简写形式</h3><table>
+<thead>
+<tr>
+<th>量词</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>{m,}</code></td>
+<td>表示至少出现 m 次。</td>
+</tr>
+<tr>
+<td><code>{m}</code></td>
+<td>等价于 <code>{m,m}</code>，表示出现 m 次。</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>等价于 <code>{0,1}</code>，表示出现或者不出现。</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>等价于 <code>{1,}</code>，表示出现至少一次。</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>等价于 <code>{0,}</code>，表示出现任意次，有可能不出现。</td>
+</tr>
+</tbody></table>
 <hr>
-<h2 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a>HEAD</h2><p>对当前 <code>commit</code> 的引用。</p>
-<p>每次当有新的 <code>commit</code> 的时候，<code>HEAD</code> 会转而指向最新的 <code>commit</code>。</p>
-<blockquote>
-<p>使用 <code>checkout</code>、<code>reset</code> 等指令手动改变当前 commit 的时候，HEAD 也会一起跟过去。</p>
-</blockquote>
-<p>总之，当前 <code>commit</code> 在哪里，<code>HEAD</code> 就在哪里，这是一个永远自动指向当前 <code>commit</code> 的引用，所以永远可以用 <code>HEAD</code> 来操作当前 <code>commit</code>。</p>
-<p><code>HEAD</code> 除了可以指向 <code>commit</code>，还可以指向一个 <code>branch</code>，当它指向某个 <code>branch</code> 的时候，会通过这个 <code>branch</code> 来间接地指向某个 <code>commit</code>。另外，当 <code>HEAD</code> 在提交时自动向前移动的时候，它会像一个拖钩一样带着它所指向的 <code>branch</code> 一起移动。</p>
-<hr>
-<h2 id="Feature-Branching-工作流"><a href="#Feature-Branching-工作流" class="headerlink" title="Feature Branching 工作流"></a>Feature Branching 工作流</h2><ol>
-<li><p>任何新的功能（feature）或 bug 修复全都新建一个 <code>branch</code> 来写。</p>
-</li>
-<li><p><code>branch</code> 写完后，合并到 <code>master</code>，然后删掉这个 <code>branch</code>。</p>
-</li>
-</ol>
-<p>解决了代码分享与一人多任务的问题。</p>
+<h3 id="贪婪匹配与惰性匹配"><a href="#贪婪匹配与惰性匹配" class="headerlink" title="贪婪匹配与惰性匹配"></a>贪婪匹配与惰性匹配</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> regex = <span class="regexp">/\d&#123;2,5&#125;/g</span>;</span><br><span class="line"><span class="keyword">let</span> string = <span class="string">"123 1234 12345 123456"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(string.match(regex));</span><br><span class="line"><span class="comment">// =&gt; ["123", "1234", "12345", "12345"]</span></span><br></pre></td></tr></table></figure>
+
+<p>正则 <code>/\d{2,5}/</code> 表示数字连续出现 2 到 5 次，会匹配 2 位、3 位、4 位、5 位连续数字，其是贪婪的，会尽可能匹配多的位数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> regex = <span class="regexp">/\d&#123;2,5&#125;?/g</span>;</span><br><span class="line"><span class="keyword">let</span> string = <span class="string">"123 1234 12345 123456"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(string.match(regex));</span><br><span class="line"><span class="comment">// =&gt; ["12", "12", "34", "12", "34", "12", "34", "56"]</span></span><br></pre></td></tr></table></figure>
+
+<p>惰性匹配，就是尽可能少的匹配位数，正则 <code>/\d{2,5}?/</code> 表示虽然出现 2 到 5 次都行，但当 2 个就够的时候，就不再往下尝试了。</p>
+<p><strong>通过在量词后面加个 <code>?</code> 就能实现惰性匹配。</strong></p>
 <p>&nbsp;</p>
-<h1 id="查看信息"><a href="#查看信息" class="headerlink" title="查看信息"></a>查看信息</h1><h2 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h2><p>查看历史 <code>commit</code> 的信息，包括 <code>commit</code> 的 SHA-1 校验和（类似 <code>commit</code> 的 id），提交作者，提交时间以及提交信息。</p>
-<p>按 <code>q</code> 键退出查看。</p>
-<p>加上 <code>-p</code> 或 <code>--patch</code> 参数，可以查看每个 <code>commit</code> 的改动细节。</p>
-<p>使用 <code>--stat</code> 参数只是查看大致的改动内容，并不会深入每一行的细节。</p>
-<hr>
-<h2 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h2><p>查看工作目录当前状态，包括当前所处的 <code>branch</code> ，相对于 <code>origin/branch</code> 的位置，是否有 untracked files（未追踪的文件）等等。</p>
-<blockquote>
-<p>untracked 状态表示 Git 本地仓库对它没有进行任何记录，你在提交的时候不会把它提交上去，查看提交历史也不会看到它，对于 Git 本地仓库来说，它是不存在的。</p>
-</blockquote>
-<blockquote>
-<p>可通过 <code>git add [文件名]</code> 命令让 Git 追踪指定的 untracked 状态的文件并记录进暂存区。</p>
-</blockquote>
-<hr>
-<h2 id="git-show"><a href="#git-show" class="headerlink" title="git show"></a>git show</h2><p>查看当前 <code>commit</code> 的改动内容。</p>
+<h2 id="多选分支"><a href="#多选分支" class="headerlink" title="多选分支"></a>多选分支</h2><p>多选分支可以支持多个子模式任选其一。</p>
+<p>具体形式如下：<code>/p1|p2|p3/</code>，其中 <code>p1</code>、<code>p2</code> 和 <code>p3</code> 是子模式，用 <code>|</code>（管道符）分隔，表示匹配其中任何一个模式即可。</p>
+<p><strong>分支结构也是惰性的，即当前面的匹配上了，后面的就不再尝试了。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> regex = <span class="regexp">/good|goodbye/g</span>;</span><br><span class="line"><span class="keyword">let</span> string = <span class="string">"goodbye"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(string.match(regex));</span><br><span class="line"><span class="comment">// =&gt; ["good"]</span></span><br></pre></td></tr></table></figure>
+
 <p>&nbsp;</p>
-<h1 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h1><h2 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h2><p>可添加具体文件名参数将指定文件被改动的部分记录进暂存区。</p>
-<p>也可添加 <code>.</code> 或者 <code>all</code> 参数将工作目录下的所有改动全部放进暂存区。</p>
+<p><strong>匹配字符，无非就是字符组、量词和分支结构的组合使用。</strong></p>
+<p>&nbsp;</p>
+<h1 id="位置匹配"><a href="#位置匹配" class="headerlink" title="位置匹配"></a>位置匹配</h1><h2 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h2><p>位置（锚）是相邻字符之间的位置。</p>
 <blockquote>
-<p>通过 <code>add</code> 添加进暂存区的不是文件名，而是具体的文件改动内容。</p>
+<p>位置可以替换成字符。</p>
 </blockquote>
+<p>在 ES5 中，共有 6 个锚：<code>^</code>、<code>$</code>、<code>\b</code>、<code>\B</code>、<code>(?=p)</code>、<code>(?!p)</code>。</p>
+<h3 id="和"><a href="#和" class="headerlink" title="^ 和 $"></a>^ 和 $</h3><p><code>^</code>（脱字符）匹配开头，在多行匹配中匹配行开头。</p>
+<p><code>$</code>（美元符号）匹配结尾，在多行匹配中匹配行结尾。</p>
+<p>多行匹配模式时（有修饰符 <code>m</code>），会匹配每一行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = <span class="string">"I\nlove\njavascript"</span>.replace(<span class="regexp">/^|$/gm</span>, <span class="string">'#'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(result);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">#I#</span></span><br><span class="line"><span class="comment">#love#</span></span><br><span class="line"><span class="comment">#javascript#</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
 <hr>
-<h2 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h2><p>将暂存区中的内容提交到本地仓库。</p>
-<p>可通过使用 <code>-m "提交信息"</code> 参数来方便地填写提交信息。</p>
+<h3 id="b-和-B"><a href="#b-和-B" class="headerlink" title="\b 和 \B"></a>\b 和 \B</h3><p><code>\b</code> 是单词边界，具体就是 <code>\w</code> 与 <code>\W</code> 之间的位置，也包括 <code>\w</code> 与 <code>^</code> 之间的位置和 <code>\w</code> 与 <code>$</code> 之间的位置。</p>
+<p><code>\B</code> 就是 <code>\b</code> 的反面的意思，非单词边界，具体说来就是 <code>\w</code> 与 <code>\w</code>、 <code>\W</code> 与 <code>\W</code>、<code>^</code> 与 <code>\W</code>，<code>\W</code> 与 <code>$</code> 之间的位置。</p>
 <hr>
-<h2 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h2><p>把当前 <code>branch</code> 的位置上传到远程仓库，并把它路径上的 <code>commit</code> 也一并上传。</p>
-<p>可通过添加 <code>origin branch</code> 参数来指定上传到远程仓库的哪一个分支。</p>
+<h3 id="p-和-p"><a href="#p-和-p" class="headerlink" title="(?=p) 和 (?!p)"></a>(?=p) 和 (?!p)</h3><p><code>(?=p)</code>，其中 <code>p</code> 是一个子模式，整体表示匹配模式 <code>p</code> 的字符的前面的位置。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = <span class="string">"hello"</span>.replace(<span class="regexp">/(?=l)/g</span>, <span class="string">'#'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(result);</span><br><span class="line"><span class="comment">// =&gt; "he#l#lo"</span></span><br></pre></td></tr></table></figure>
+
+<p>而 <code>(?!p)</code> 就是 <code>(?=p)</code> 的反面意思。</p>
 <blockquote>
-<p>在 Git 中（2.0 及它之后的版本），默认情况下，你用不加参数的 git push 只能上传那些之前从远端 clone 下来或者 pull 下来的分支，而如果需要 push 你本地的自己创建的分支，则需要手动指定目标仓库和目标分支（并且目标分支的名称必须和本地分支完全相同）。</p>
+<p>二者的学名分别是 positive lookahead 和 negative lookahead，中文翻译分别是正向先行断言和负向先行断言。</p>
 </blockquote>
-<blockquote>
-<p><code>push</code> 的时候只会上传当前的 <code>branch</code> 的指向，并不会把本地的 <code>HEAD</code> 的指向也一起上传到远程仓库。事实上，远程仓库的 <code>HEAD</code> 是<strong>永远</strong>指向它的默认分支（<code>master</code>）的，并会随着默认分支的移动而移动。</p>
-</blockquote>
-<hr>
-<h2 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h2><p>把远程仓库上的内容取回到本地并和本地合并。</p>
-<p>可通过添加 <code>origin branch</code> 参数来指定要取远程仓库的哪一个分支的内容。</p>
-<blockquote>
-<p><code>git pull</code> 这个指令的内部实现就是使用 <code>git fetch</code> 把远程仓库的内容取下来以后再进行 <code>merge</code> 操作。</p>
-</blockquote>
-<hr>
-<h2 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h2><p>添加分支名称参数来创建一个新的 <code>branch</code>。</p>
-<p>添加 <code>-d 分支名</code> 参数来删除指定的 <code>branch</code></p>
-<blockquote>
-<p><code>HEAD</code> 指向的 <code>branch</code> 不能删除。如果要删除 <code>HEAD</code> 指向的 <code>branch</code>，需要先用 <code>checkout</code> 把 <code>HEAD</code> 指向其他地方。</p>
-</blockquote>
-<blockquote>
-<p>由于 Git 中的 <code>branch</code> 只是一个对 <code>commit</code>的 引用，所以删除 <code>branch</code> 的操作只会删掉这个引用，并不会删除任何的 commit。（不过如果一个 <code>commit</code> 不在任何一个 <code>branch</code> 的「路径」上，或者换句话说，如果没有任何一个 <code>branch</code> 可以回溯到这条 <code>commit</code>，那么在一定时间后，它会被 Git 的回收机制删除掉）。</p>
-</blockquote>
-<blockquote>
-<p>出于安全考虑，没有被合并到 <code>master</code> 过的 <code>branch</code> 在删除时会失败（怕误删掉「未完成」的 <code>branch</code> ），如果确认是要删除这个 <code>branch</code>（例如某个未完成的功能被团队确认永久毙掉了，不再做了），可以把 <code>-d</code> 改成 <code>-D</code> 进行强制删除。</p>
-</blockquote>
-<hr>
-<h2 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h2><p>添加分支名称参数来切换 <code>branch</code>（即将 <code>HEAD</code> 指向目标 <code>branch</code>）。</p>
-<blockquote>
-<p>可以用 <code>git checkout -b 分支名称</code> 来将 <code>git branch</code> 和 <code>git checkout</code> 两步操作合并执行。这行代码可以帮你用指定的名称创建 <code>branch</code> 后，再直接切换过去。</p>
-</blockquote>
-<hr>
-<h2 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h2><p>添加分支名称参数来指定一个目标 <code>commit</code>（<code>branch</code> 参数所指向的 <code>commit</code>），将从目标 <code>commit</code> 和当前 <code>commit</code> （即 <code>HEAD</code> 所指向的 <code>commit</code>）分叉的位置起，把目标 <code>commit</code> 路径上的所有 <code>commit</code> 的内容一并应用到当前 <code>commit</code> 中，然后自动生成一个新的 <code>commit</code>。</p>
-<p>如果 Git 仓库处于冲突待解决的中间状态，并且你最终决定放弃这次 <code>merge</code>，可以通过执行 <code>git merge --abort</code> 来手动取消它。</p>
-<p>特殊情况：</p>
-<ol>
-<li><p>如果 <code>merge</code> 时的目标 <code>commit</code> 和 <code>HEAD</code> 指向的 <code>commit</code> 并不存在分叉，而是 <code>HEAD</code> 领先于目标 <code>commit</code>，那么 <code>merge</code> 就没必要再创建一个新的 <code>commit</code> 来进行合并操作了，因为并没有什么需要合并的内容，在这种情况下，Git 什么也不会做，<code>merge</code> 只是一个空操作。</p>
-</li>
-<li><p>如果 <code>HEAD</code> 和目标 <code>commit</code> 不存在分叉，但 <code>HEAD</code> 落后于目标 <code>commit</code>，那么 Git 会直接把 <code>HEAD</code>（以及它所指向的 <code>branch</code>）移动到目标 <code>commit</code>，这种操作有一个专有称谓，叫做 “fast-forward”（快速前移）。</p>
-</li>
-</ol>
+<p>ES5 之后的版本，会支持 <code>(?&lt;=p)</code> （positive lookbehind） 和 <code>(?&lt;!p)</code>（negative lookbehind）。</p>
+<p>&nbsp;</p>
+<h2 id="位置的特性"><a href="#位置的特性" class="headerlink" title="位置的特性"></a>位置的特性</h2><p>位置可以理解成字符之间的空字符 <code>&quot;&quot;</code>，且在两个字符之间可以有多个。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = <span class="regexp">/(?=he)^^he(?=\w)llo$\b\b$/</span>.test(<span class="string">"hello"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(result);</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br></pre></td></tr></table></figure>
+
 
     </article>
     <!-- license  -->
     <!-- 
         <div class="license-wrapper">
             <p>原文作者：<a href="http://hitsuki9.github.io">Histuki9</a>
-            <p>原文链接：<a href="http://hitsuki9.github.io/git/">http://hitsuki9.github.io/git/</a>
-            <p>发表日期：<a href="http://hitsuki9.github.io/git/">September 19th 2019, 12:00:00 am</a>
-            <p>更新日期：<a href="http://hitsuki9.github.io/git/">September 24th 2019, 12:16:01 am</a>
+            <p>原文链接：<a href="http://hitsuki9.github.io/js-regexp/">http://hitsuki9.github.io/js-regexp/</a>
+            <p>发表日期：<a href="http://hitsuki9.github.io/js-regexp/">September 25th 2019, 12:00:00 am</a>
+            <p>更新日期：<a href="http://hitsuki9.github.io/js-regexp/">September 26th 2019, 8:01:34 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
      -->
@@ -510,16 +554,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/webpack4/" title= "webpack4 配置详解">
-                    <div class="nextTitle">webpack4 配置详解</div>
+                <a href= "/vue/" title= "vue">
+                    <div class="nextTitle">vue</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/ecmascript-2015/" title= "《ECMAScript 6 入门》读书笔记">
-                    <div class="prevTitle">《ECMAScript 6 入门》读书笔记</div>
+                <a href= "/webpack4/" title= "webpack4 配置详解">
+                    <div class="prevTitle">webpack4 配置详解</div>
                 </a>
             
         </li>
@@ -627,7 +671,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#克隆仓库"><span class="toc-number">1.</span> <span class="toc-text">克隆仓库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git目录"><span class="toc-number">2.</span> <span class="toc-text">.git目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#概念"><span class="toc-number">3.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#branch"><span class="toc-number">3.1.</span> <span class="toc-text">branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HEAD"><span class="toc-number">3.2.</span> <span class="toc-text">HEAD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Feature-Branching-工作流"><span class="toc-number">3.3.</span> <span class="toc-text">Feature Branching 工作流</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查看信息"><span class="toc-number">4.</span> <span class="toc-text">查看信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-log"><span class="toc-number">4.1.</span> <span class="toc-text">git log</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-status"><span class="toc-number">4.2.</span> <span class="toc-text">git status</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-show"><span class="toc-number">4.3.</span> <span class="toc-text">git show</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#操作"><span class="toc-number">5.</span> <span class="toc-text">操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-add"><span class="toc-number">5.1.</span> <span class="toc-text">git add</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-commit"><span class="toc-number">5.2.</span> <span class="toc-text">git commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-push"><span class="toc-number">5.3.</span> <span class="toc-text">git push</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-pull"><span class="toc-number">5.4.</span> <span class="toc-text">git pull</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-branch"><span class="toc-number">5.5.</span> <span class="toc-text">git branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-checkout"><span class="toc-number">5.6.</span> <span class="toc-text">git checkout</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-merge"><span class="toc-number">5.7.</span> <span class="toc-text">git merge</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#字符匹配"><span class="toc-number">1.</span> <span class="toc-text">字符匹配</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#模糊匹配"><span class="toc-number">1.1.</span> <span class="toc-text">模糊匹配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#横向模糊匹配"><span class="toc-number">1.1.1.</span> <span class="toc-text">横向模糊匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#纵向模糊匹配"><span class="toc-number">1.1.2.</span> <span class="toc-text">纵向模糊匹配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符组"><span class="toc-number">1.2.</span> <span class="toc-text">字符组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#范围表示法"><span class="toc-number">1.2.1.</span> <span class="toc-text">范围表示法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#排除字符组"><span class="toc-number">1.2.2.</span> <span class="toc-text">排除字符组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见的简写形式"><span class="toc-number">1.2.3.</span> <span class="toc-text">常见的简写形式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#量词"><span class="toc-number">1.3.</span> <span class="toc-text">量词</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简写形式"><span class="toc-number">1.3.1.</span> <span class="toc-text">简写形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#贪婪匹配与惰性匹配"><span class="toc-number">1.3.2.</span> <span class="toc-text">贪婪匹配与惰性匹配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多选分支"><span class="toc-number">1.4.</span> <span class="toc-text">多选分支</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#位置匹配"><span class="toc-number">2.</span> <span class="toc-text">位置匹配</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#位置"><span class="toc-number">2.1.</span> <span class="toc-text">位置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#和"><span class="toc-number">2.1.1.</span> <span class="toc-text">^ 和 $</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b-和-B"><span class="toc-number">2.1.2.</span> <span class="toc-text">\b 和 \B</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#p-和-p"><span class="toc-number">2.1.3.</span> <span class="toc-text">(?=p) 和 (?!p)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#位置的特性"><span class="toc-number">2.2.</span> <span class="toc-text">位置的特性</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
