@@ -22,7 +22,7 @@
     <meta name="description" content="前端萌新">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>vue · Hitsuki9&#39;s Blog</title>
+    <title>Vue 知识点整理 · Hitsuki9&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >Hitsuki9&#39;s Blog.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">vue</a>
+                <a href="#" class="post-name">Vue 知识点整理</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            vue
+            Vue 知识点整理
             <!-- 404 -->
             
         </h1>
@@ -272,12 +272,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">269</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">954</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/09/26</span>
+                    <span class="post-intro-time">2019/10/01</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -401,24 +401,86 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>组件通信<br>父组件 =&gt; 子组件<br>属性 props<br>特性 $attrs<br>引用 refs<br>子元素 $children 子元素不保证顺序</p>
-<p>子组件 =&gt; 父组件<br>自定义事件 谁派发谁监听</p>
-<p>兄弟组件<br>通过共同的父辈组件搭桥：$parent $root</p>
-<p>祖先和后代<br>provide/inject</p>
-<p>任意两个组件<br>vuex/事件总线</p>
-<p>插槽<br>匿名插槽<br>具名插槽<br>作用域插槽</p>
-<p>表单组件<br>需求分析</p>
-<ul>
-<li>数据收集：输入框，下拉选择框，单选框</li>
-<li>校验：单项校验，全局校验 事件激活</li>
-</ul>
+        <h1 id="组件通信"><a href="#组件通信" class="headerlink" title="组件通信"></a>组件通信</h1><h2 id="父组件-gt-子组件"><a href="#父组件-gt-子组件" class="headerlink" title="父组件 =&gt; 子组件"></a>父组件 =&gt; 子组件</h2><h3 id="属性-props"><a href="#属性-props" class="headerlink" title="属性 props"></a>属性 props</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// child</span></span><br><span class="line">props: &#123; <span class="attr">msg</span>: <span class="built_in">String</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// parent</span></span><br><span class="line">&lt;HelloWorld msg=<span class="string">"Welcome to Your Vue.js App"</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="特性-attrs"><a href="#特性-attrs" class="headerlink" title="特性 $attrs"></a>特性 $attrs</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// child 并未在 props 中声明 foo</span></span><br><span class="line">&lt;p&gt;&#123;&#123; $attrs.foo &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ parent</span></span><br><span class="line"><span class="regexp">&lt;HelloWorld foo="foo"/</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>$attrs</code> 包含了父作用域中不作为 <code>prop</code> 被传入的特性 （<strong><code>class</code> 和 <code>style</code> 除外</strong>），可以通过 <code>v-bind=&quot;$attrs&quot;</code> 在内部组件中获取所有这些特性。</p>
+</blockquote>
+<blockquote>
+<p>常与 <code>inheritAttrs</code> 配合使用，通过将 <code>inheritAttrs</code> 设置为 <code>false</code> 可使组件的根元素不继承传入的特性（<strong><code>class</code> 和 <code>style</code> 除外</strong>）。</p>
+</blockquote>
+<hr>
+<h3 id="引用-refs"><a href="#引用-refs" class="headerlink" title="引用 refs"></a>引用 refs</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// parent</span></span><br><span class="line">&lt;HelloWorld ref=<span class="string">"parent"</span>/&gt;</span><br><span class="line"></span><br><span class="line">mounted () &#123;</span><br><span class="line">  <span class="keyword">this</span>.$refs.parent.xx = <span class="string">'xxx'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="子元素-children"><a href="#子元素-children" class="headerlink" title="子元素 $children"></a>子元素 $children</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// parent</span></span><br><span class="line"><span class="keyword">this</span>.$children[<span class="number">0</span>].xx = <span class="string">'xxx'</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>$children</code> 是当前实例的直接子组件，但并<strong>不保证顺序，也不是响应式的</strong>。</p>
+</blockquote>
+<p>&nbsp;</p>
+<h2 id="子组件-gt-父组件"><a href="#子组件-gt-父组件" class="headerlink" title="子组件 =&gt; 父组件"></a>子组件 =&gt; 父组件</h2><h3 id="自定义事件"><a href="#自定义事件" class="headerlink" title="自定义事件"></a>自定义事件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// child</span></span><br><span class="line"><span class="keyword">this</span>.$emit(<span class="string">'add'</span>, good)</span><br><span class="line"></span><br><span class="line"><span class="comment">// parent</span></span><br><span class="line">&lt;Cart @add=<span class="string">"cartAdd($event)"</span>&gt;&lt;/Cart&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>由谁派发的事件则由谁监听。</p>
+</blockquote>
+<p>&nbsp;</p>
+<h2 id="兄弟组件之间"><a href="#兄弟组件之间" class="headerlink" title="兄弟组件之间"></a>兄弟组件之间</h2><p>通过共同的祖辈组件搭桥：<code>$parent</code> 或 <code>$root</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// brother1</span></span><br><span class="line"><span class="keyword">this</span>.$parent.$on(<span class="string">'foo'</span>, handle)</span><br><span class="line"></span><br><span class="line"><span class="comment">// brother2</span></span><br><span class="line"><span class="keyword">this</span>.$parent.$emit(<span class="string">'foo'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>&nbsp;</p>
+<h2 id="祖先和后代组件之间"><a href="#祖先和后代组件之间" class="headerlink" title="祖先和后代组件之间"></a>祖先和后代组件之间</h2><p><code>provide</code> / <code>inject</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ancestor</span></span><br><span class="line">provide () &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">foo</span>: <span class="string">'foo'</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// descendant</span></span><br><span class="line">inject: [<span class="string">'foo'</span>]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>通过 <code>provide</code> 和 <code>inject</code> 绑定的值并不是可响应的，然而，如果传入了一个可监听的对象，那么其对象的属性还是可响应的。</p>
+</blockquote>
+<p>&nbsp;</p>
+<h2 id="任意两个组件"><a href="#任意两个组件" class="headerlink" title="任意两个组件"></a>任意两个组件</h2><h3 id="事件总线"><a href="#事件总线" class="headerlink" title="事件总线"></a>事件总线</h3><p>创建一个 <code>Bus</code> 类来负责事件的派发、监听与回调管理。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bus</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> () &#123;</span><br><span class="line">    <span class="keyword">this</span>.callbacks = &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">  $on (name, fn) &#123;</span><br><span class="line">    <span class="keyword">this</span>.callbacks[name] = <span class="keyword">this</span>.callbacks[name] || []</span><br><span class="line">    <span class="keyword">this</span>.callbacks[name].push(fn)</span><br><span class="line">  &#125;</span><br><span class="line">  $emit (name, args) &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.callbacks[name]) &#123;</span><br><span class="line">      <span class="keyword">this</span>.callbacks[name].forEach(<span class="function"><span class="params">cb</span> =&gt;</span> cb(args))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.js</span></span><br><span class="line">Vue.prototype.$bus = <span class="keyword">new</span> Bus()</span><br><span class="line"></span><br><span class="line"><span class="comment">// child1</span></span><br><span class="line"><span class="keyword">this</span>.$bus.$on(<span class="string">'foo'</span>, handle)</span><br><span class="line"></span><br><span class="line"><span class="comment">// child2</span></span><br><span class="line"><span class="keyword">this</span>.$bus.$emit(<span class="string">'foo'</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>实践中可以用 <code>Vue</code> 代替 <code>Bus</code>，因为它已经实现了相应功能。</p>
+</blockquote>
+<hr>
+<h3 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h3><p>创建唯一的全局数据管理者 <code>store</code>，通过它来管理数据并通知组件变更状态。</p>
+<p>&nbsp;</p>
+<h1 id="插槽"><a href="#插槽" class="headerlink" title="插槽"></a>插槽</h1><p>插槽语法是 <code>Vue</code> 实现的内容分发 API。</p>
+<h2 id="匿名插槽"><a href="#匿名插槽" class="headerlink" title="匿名插槽"></a>匿名插槽</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- comp1 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">slot</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- parent --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">comp</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">comp</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="具名插槽"><a href="#具名插槽" class="headerlink" title="具名插槽"></a>具名插槽</h2><p>将内容分发到子组件的指定位置。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- comp2 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">slot</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- parent --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Comp2</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 默认插槽用 default 做参数 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:default</span>&gt;</span>具名插槽<span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 具名插槽用插槽名做参数 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:content</span>&gt;</span>内容...<span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Comp2</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="作用域插槽"><a href="#作用域插槽" class="headerlink" title="作用域插槽"></a>作用域插槽</h2><p>分发的内容需要用到子组件中的数据。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- comp3 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">slot</span> <span class="attr">:foo</span>=<span class="string">"foo"</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- parent --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Comp3</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 把 v-slot 指定的值指定为作用域上下文对象 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:default</span>=<span class="string">"slotProps"</span>&gt;</span></span><br><span class="line">  来自子组件的数据：&#123;&#123; slotProps.foo &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Comp3</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>&nbsp;</p>
+<h1 id="组件实现"><a href="#组件实现" class="headerlink" title="组件实现"></a>组件实现</h1><h2 id="表单组件"><a href="#表单组件" class="headerlink" title="表单组件"></a>表单组件</h2><h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><pre><code class="html"></code></pre>
 <p>双向绑定<br>v-model语法糖 value 和 @input<br>.sync</p>
-<p>v-bind展开对象</p>
-<p>inherited</p>
-<p>校验返回promise</p>
-<p>弹窗组件<br>独立于vue实例之外</p>
-<p>Vue SSR<br>SPA请求次数多 -》 首屏渲染速度慢<br>SEO不友好</p>
-<p>客户端发送请求 -》 服务端将vue模板解析成html（包含首屏所有需要的异步数据） -》返回给浏览器进行首屏渲染 -》 同时转换为SPA</p>
+<p>&nbsp;</p>
+<h2 id="弹窗组件"><a href="#弹窗组件" class="headerlink" title="弹窗组件"></a>弹窗组件</h2><p>独立于vue实例之外</p>
+<h2 id="树形组件"><a href="#树形组件" class="headerlink" title="树形组件"></a>树形组件</h2><p>vue-router<br>hash/history</p>
+<p>install =&gt; {<br>  挂载$router<br>  注册组件<br>}</p>
+<p>router =&gt; {<br>  解析路由配置<br>  监听hashchange事件<br>  响应url变化<br>  组件切换<br>}</p>
+<p>创建Router类</p>
+<ul>
+<li>解析routes配置，生成map</li>
+<li>监听url变化</li>
+<li>声明，注册组件 router-link router-view<br>实现插件</li>
+<li>挂载$router</li>
+</ul>
+<p>vuex<br>模块化<br>namespace</p>
+<p>实现Store类</p>
+<ul>
+<li>state响应化处理</li>
+<li>保存状态，实现dispatch，commit<br>实现插件</li>
+<li>挂载$store</li>
+</ul>
+<p>Vue SSR<br>SPA请求次数多 =&gt; 首屏渲染速度慢<br>SEO不友好</p>
+<p>客户端发送请求 =&gt; 服务端将vue模板解析成html（包含首屏所有需要的异步数据） =&gt; 返回给浏览器进行首屏渲染 =&gt; 同时转换为SPA</p>
 <p>缺点：<br>1.开发条件受限，例如mouted生命周期函数无法使用<br>2.服务端负载变大</p>
 
     </article>
@@ -427,8 +489,8 @@ height:50vh;
         <div class="license-wrapper">
             <p>原文作者：<a href="http://hitsuki9.github.io">Histuki9</a>
             <p>原文链接：<a href="http://hitsuki9.github.io/vue/">http://hitsuki9.github.io/vue/</a>
-            <p>发表日期：<a href="http://hitsuki9.github.io/vue/">September 26th 2019, 12:00:00 am</a>
-            <p>更新日期：<a href="http://hitsuki9.github.io/vue/">September 26th 2019, 11:19:09 pm</a>
+            <p>发表日期：<a href="http://hitsuki9.github.io/vue/">October 1st 2019, 12:00:00 am</a>
+            <p>更新日期：<a href="http://hitsuki9.github.io/vue/">October 4th 2019, 12:54:31 am</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
      -->
@@ -549,7 +611,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#组件通信"><span class="toc-number">1.</span> <span class="toc-text">组件通信</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#父组件-gt-子组件"><span class="toc-number">1.1.</span> <span class="toc-text">父组件 =&gt; 子组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#属性-props"><span class="toc-number">1.1.1.</span> <span class="toc-text">属性 props</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特性-attrs"><span class="toc-number">1.1.2.</span> <span class="toc-text">特性 $attrs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引用-refs"><span class="toc-number">1.1.3.</span> <span class="toc-text">引用 refs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#子元素-children"><span class="toc-number">1.1.4.</span> <span class="toc-text">子元素 $children</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子组件-gt-父组件"><span class="toc-number">1.2.</span> <span class="toc-text">子组件 =&gt; 父组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义事件"><span class="toc-number">1.2.1.</span> <span class="toc-text">自定义事件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#兄弟组件之间"><span class="toc-number">1.3.</span> <span class="toc-text">兄弟组件之间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#祖先和后代组件之间"><span class="toc-number">1.4.</span> <span class="toc-text">祖先和后代组件之间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#任意两个组件"><span class="toc-number">1.5.</span> <span class="toc-text">任意两个组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#事件总线"><span class="toc-number">1.5.1.</span> <span class="toc-text">事件总线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vuex"><span class="toc-number">1.5.2.</span> <span class="toc-text">Vuex</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#插槽"><span class="toc-number">2.</span> <span class="toc-text">插槽</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#匿名插槽"><span class="toc-number">2.1.</span> <span class="toc-text">匿名插槽</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#具名插槽"><span class="toc-number">2.2.</span> <span class="toc-text">具名插槽</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作用域插槽"><span class="toc-number">2.3.</span> <span class="toc-text">作用域插槽</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#组件实现"><span class="toc-number">3.</span> <span class="toc-text">组件实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#表单组件"><span class="toc-number">3.1.</span> <span class="toc-text">表单组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input"><span class="toc-number">3.1.1.</span> <span class="toc-text">Input</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#弹窗组件"><span class="toc-number">3.2.</span> <span class="toc-text">弹窗组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#树形组件"><span class="toc-number">3.3.</span> <span class="toc-text">树形组件</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -657,7 +719,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/26</span><a class="archive-post-title" href= "/vue/" >vue</a>
+            <span class="archive-post-date">10/01</span><a class="archive-post-title" href= "/vue/" >Vue 知识点整理</a>
         </li>
     
     

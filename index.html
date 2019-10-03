@@ -361,30 +361,21 @@ height:50vh;
     <article class="index-post">
         <a class="abstract-title" href = "/vue/" >
             
-                <span>vue</span>
+                <span>Vue 知识点整理</span>
         </a>
         <div class="abstract-content">
-            组件通信父组件 =&gt; 子组件属性 props特性 $attrs引用 refs子元素 $children 子元素不保证顺序
-子组件 =&gt; 父组件自定义事件 谁派发谁监听
-兄弟组件通过共同的父辈组件搭桥：$parent $root
-祖先和后代provide/inject
-任意两个组件vuex/事件总线
-插槽匿名插槽具名插槽作用域插槽
-表单组件需求分析
+            组件通信父组件 =&gt; 子组件属性 props12345// childprops: &#123; msg: String &#125;// parent&lt;HelloWorld msg="Welcome to Your Vue.js App"/&gt;
 
-数据收集：输入框，下拉选择框，单选框
-校验：单项校验，全局校验 事件激活
 
-双向绑定v-model语法糖 value 和 @input.sync
-v-bind展开对象
-inherited
-校验返回promise
-弹窗组件独立于vu...
+特性 $attrs12345// child 并未在 props 中声明 foo&lt;p&gt;&#123;&#123; $attrs.foo &#125;&#125;&lt;/p&gt;// parent&lt;HelloWorld foo="foo"/&gt;
+
+
+$attrs 包含了父作用域中不作为 prop 被传入...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/26</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/01</span>
             </div>
             <!-- tags  -->
             
@@ -866,7 +857,7 @@ ECMAScript：提供核心语言功能；DOM：提供访问和操作网页内容�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/26</span><a class="archive-post-title" href= "/vue/" >vue</a>
+            <span class="archive-post-date">10/01</span><a class="archive-post-title" href= "/vue/" >Vue 知识点整理</a>
         </li>
     
     
