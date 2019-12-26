@@ -346,18 +346,46 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/react/" >
+            
+                <span>React 知识点整理</span>
+        </a>
+        <div class="abstract-content">
+            
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/26</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "前端">前端</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/ecmascript-2015/" >
             
                 <span>《ECMAScript 6 入门》读书笔记</span>
         </a>
         <div class="abstract-content">
-            let和const命令let命令不存在变量提升var 命令会发生“变量提升”现象，即变量可以在声明之前使用，值为 undefined。
+            let 和 const 命令let 命令不存在变量提升var 命令会发生“变量提升”现象，即变量可以在声明之前使用，值为 undefined。
 12345678console.log(foo); // 输出 undefinedvar foo = 2;// 等价于var foo; // undefinedconsole.log(foo); // 输出 undefinedfoo = 2;
 
 let 命令所声明的变量一定要在声明后使用，否则报 ReferenceError错误。
 
-暂时性死区只要块级作用域内存在 let 命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。
-在代...
+暂时性死区只要块级作用域内存在 let 命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -386,13 +414,13 @@ let 命令所声明的变量一定要在声明后使用，否则报 ReferenceErr
                 <span>Vue 知识点整理</span>
         </a>
         <div class="abstract-content">
-            组件通信父组件 =&gt; 子组件属性 props12345// childprops: &#123; msg: String &#125;// parent&lt;HelloWorld msg="Welcome to Your Vue.js App"/&gt;
+            组件通信父组件 =&gt; 子组件属性 props1234567// childprops: &#123;  msg: String;&#125;// parent&lt;HelloWorld msg="Welcome to Your Vue.js App" /&gt;;
 
 
 特性 $attrs12345// child 并未在 props 中声明 foo&lt;p&gt;&#123;&#123; $attrs.foo &#125;&#125;&lt;/p&gt;// parent&lt;HelloWorld foo="foo"/&gt;
 
 
-$attrs 包含了父作用域中不作为 prop 被传入...
+$attrs 包含了父作用域中不作为 pro...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -492,13 +520,13 @@ outputoutput.filenamestring function
             克隆仓库1git clone 远程仓库地址 [本地仓库的根目录名称]
 
 &nbsp;
-.git目录本地仓库（Local Repository），本地所有的版本信息都会存在这里。.git 所在的根目录称为 Git 的工作目录（Working Directory），它保存了你当前从仓库中签出（checkout）的内容。
+.git 目录本地仓库（Local Repository），本地所有的版本信息都会存在这里。.git 所在的根目录称为 Git 的工作目录（Working Directory），它保存了你当前从仓库中签出（checkout）的内容。
 
 可通过在工作目录下输入 git init 命令创建 .git 目录。
 
 &nbsp;
 概念branch对 commit 的引用。
-每一个 commit 都有一个唯一的指定方式——它的 SHA-1 校验和。两个 SHA-1 值的重复概率极低，所以可以使用这个 SHA-1 值来...
+每一个 commit 都有一个唯一的指定方式——它的 SHA-1 校验和。两个 SHA-1 值的重复概率极低，所以可以使用这个 SHA-1 值...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -541,44 +569,6 @@ Mo...
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/24</span>
             </div>
             <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/professional-javascript-for-web/" >
-            
-                <span>《JavaScript高级程序设计》读书笔记</span>
-        </a>
-        <div class="abstract-content">
-            莎士比亚曾经说过：“好记性不如烂笔头。”
-第一章 JavaScript简介1.1 JavaScript简史1.2 JavaScript实现
-一个完整的JavaScript实现应该由三个不同的部分组成：核心（ECMAScript）、文档对象模型（DOM）、浏览器对象模型（BOM）。
-
-ECMAScript：提供核心语言功能；DOM：提供访问和操作网页内容的方法和接口；BOM：提供与浏览器交互的方法和接口。
-
-
-1.3 JavaScript版本&nbsp;
-第二章 在HTML中使用JavaScript2.1 script元素
-标签的位置：为了避免浏览器在呈现页面时出现明显的延迟，现代Web应...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2015/08/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "前端">前端</a>
-    
-</div>
             
         </div>
     </article>
@@ -736,14 +726,6 @@ ECMAScript：提供核心语言功能；DOM：提供访问和操作网页内容�
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 7
@@ -759,6 +741,11 @@ ECMAScript：提供核心语言功能；DOM：提供访问和操作网页内容�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/26</span><a class="archive-post-title" href= "/react/" >React 知识点整理</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -790,28 +777,14 @@ ECMAScript：提供核心语言功能；DOM：提供访问和操作网页内容�
             <span class="archive-post-date">07/24</span><a class="archive-post-title" href= "/hello-world/" >Hello World</a>
         </li>
     
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2015 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/19</span><a class="archive-post-title" href= "/professional-javascript-for-web/" >《JavaScript高级程序设计》读书笔记</a>
-        </li>
-    
     </div>
   </div>
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
-    
         <span class="sidebar-tag-name" data-tags="前端"><span class="iconfont-archer">&#xe606;</span>前端</span>
+    
+        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
     
         <span class="sidebar-tag-name" data-tags="正则"><span class="iconfont-archer">&#xe606;</span>正则</span>
     
@@ -851,8 +824,6 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
     
         <span class="sidebar-category-name" data-categories="创作集"><span class="iconfont-archer">&#xe60a;</span>创作集</span>
-    
-        <span class="sidebar-category-name" data-categories="转载"><span class="iconfont-archer">&#xe60a;</span>转载</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
