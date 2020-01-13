@@ -364,7 +364,11 @@ height:50vh;
                 <span>React 知识点整理</span>
         </a>
         <div class="abstract-content">
-            
+            setStatesetState 通过一个队列机制来实现 state 更新，当执行 setState() 时，会将需要更新的 state 浅合并后放入状态队列，而不会立即更新 state，队列机制可以高效地批量更新 state。
+setState 并不是真正意义上的异步操作，它只是模拟了异步的行为。
+
+setState 只在合成事件和生命周期函数中是“异步”的，在原生事件和 setTimeout 等不受 react 控制的场景中都是同步的。
+setState 的“异步”并不是说其内部由异步代码实现，其本身执行的过程和代码都是同步的，只是合成事件和生命周期函数的调用顺序在更新之前，导致在合...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -875,9 +879,9 @@ Mo...
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="前端"><span class="iconfont-archer">&#xe606;</span>前端</span>
-    
         <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
+    
+        <span class="sidebar-tag-name" data-tags="前端"><span class="iconfont-archer">&#xe606;</span>前端</span>
     
         <span class="sidebar-tag-name" data-tags="正则"><span class="iconfont-archer">&#xe606;</span>正则</span>
     
