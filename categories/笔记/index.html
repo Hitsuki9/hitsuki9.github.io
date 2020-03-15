@@ -10,9 +10,9 @@
 
 
 
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
     <meta name="author" content="Histuki9">
     <meta name="renderer" content="webkit">
     <meta name="copyright" content="Histuki9">
@@ -21,7 +21,7 @@
     
     <meta name="description" content="前端萌新">
     <meta http-equiv="Cache-control" content="no-cache">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>Hitsuki9&#39;s Blog</title>
     <style type="text/css">
     @font-face {
@@ -75,10 +75,10 @@
 
 </style>
 
-    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
     
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -187,10 +187,10 @@
 }( typeof global !== "undefined" ? global : this ) );
 </script>
 
-    <link rel="icon" href="/assets/favicon-hitsuki9.ico">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
-    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="icon" href= "/assets/favicon-hitsuki9.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
     <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
     <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
     
@@ -200,7 +200,7 @@
     
     <!-- 谷歌统计  -->
     
-</head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
     
     
@@ -346,6 +346,43 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/css/" >
+            
+                <span>CSS 知识点整理</span>
+        </a>
+        <div class="abstract-content">
+            《CSS 世界》读书笔记元素与基本尺寸
+每一个元素都有一个标记盒子，一个外部盒子与一个容器盒子。标记盒子用于展示圆点、数字这些项目符号，外部盒子用于决定元素是块级展示还是内联展示，容器盒子用于决定元素的宽高以及内容呈现方式等。
+
+表现为“外部尺寸”的块级元素一旦设置了宽度，其流动性就丢失了。所谓流动性，即是一种 margin/border/padding/content 区域自动分配水平空间的机制。
+
+对于绝对定位的非替换元素，当 left 和 right 同时存在时，元素的宽度表现为“格式化宽度”，其宽度大小相对于最近的具有定位特性的祖先元素计算。此外，“格式化宽度”也具有流动性。
+
+
+
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/15</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "git">git</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/ecmascript-2015/" >
             
                 <span>《ECMAScript 6 入门》读书笔记</span>
@@ -389,7 +426,7 @@ let 命令所声明的变量一定要在声明后使用，否则报 ReferenceErr
 模糊匹配横向模糊匹配横向模糊指的是，一个正则可匹配的字符串的长度不是固定的，可以是多种情况。
 其实现的方式是使用量词，譬如 {m,n}，表示连续出现最少 m 次，最多 n 次。
 正则 /ab{2,5}c/ 表示匹配这样一个字符串：第一个字符是 &quot;a&quot;，接下来是 2 到 5 个字符 &quot;b&quot;，最后是字符 &quot;c&quot;。
-1234let regex = /ab&#123;2,5&#125;c/g;let string = "abc abbc abbbc abbbbc abbbbbc...
+1234let regex = /ab&#123;2,5&#125;c/g;let string = 'abc abbc abbbc abbbbc abbbbbc...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -633,9 +670,22 @@ outputoutput.filenamestring function
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 7
+        Total : 8
         </div>
         <!-- search  -->
         
@@ -645,6 +695,20 @@ outputoutput.filenamestring function
     
     
     
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/15</span><a class="archive-post-title" href= "/css/" >CSS 知识点整理</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
@@ -680,8 +744,17 @@ outputoutput.filenamestring function
         </li>
     
     
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
         <li class="archive-post-item">
-            <span class="archive-post-date">07/24</span><a class="archive-post-title" href= "/hello-world/" >Hello World</a>
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/hello-world/" >Hello World</a>
         </li>
     
     </div>

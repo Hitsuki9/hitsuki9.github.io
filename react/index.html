@@ -10,9 +10,9 @@
 
 
 
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
     <meta name="author" content="Histuki9">
     <meta name="renderer" content="webkit">
     <meta name="copyright" content="Histuki9">
@@ -21,7 +21,7 @@
     
     <meta name="description" content="前端萌新">
     <meta http-equiv="Cache-control" content="no-cache">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>React 知识点整理 · Hitsuki9&#39;s Blog</title>
     <style type="text/css">
     @font-face {
@@ -75,10 +75,10 @@
 
 </style>
 
-    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
     
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -187,10 +187,10 @@
 }( typeof global !== "undefined" ? global : this ) );
 </script>
 
-    <link rel="icon" href="/assets/favicon-hitsuki9.ico">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
-    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="icon" href= "/assets/favicon-hitsuki9.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
     <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
     <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
     
@@ -200,7 +200,7 @@
     
     <!-- 谷歌统计  -->
     
-</head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
     
         <body class="post-body">
@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.1k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -419,7 +419,7 @@ height:50vh;
 <ol start="2">
 <li><code>Context.Consumer</code></li>
 </ol>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;MyContext.Consumer&gt;</span><br><span class="line">  &#123;context =&gt; &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;&#125;</span><br><span class="line">&lt;<span class="regexp">/MyContext.Consumer&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;MyContext.Consumer&gt;</span><br><span class="line">  &#123;(context) =&gt; &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;&#125;</span><br><span class="line">&lt;<span class="regexp">/MyContext.Consumer&gt;</span></span><br></pre></td></tr></table></figure>
 
 <ol start="3">
 <li><code>useContext</code></li>
@@ -431,6 +431,45 @@ height:50vh;
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param child React 子元素</span></span><br><span class="line"><span class="comment"> * @param container DOM 元素</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">ReactDOM.createPortal(child, container);</span><br></pre></td></tr></table></figure>
 
 <p><strong>尽管 <code>portal</code> 可以被放置在 DOM 树中的任何地方，但其行为和普通的 React 子节点行为一致。由于 <code>portal</code> 仍存在于 React 树，像 <code>context</code> 这样的功能特性仍可以使用。又由于 React 使用合成事件（并不是绑定在对应 DOM 节点上，而是统一绑定在 <code>document</code> 上），所以一个从 <code>portal</code> 内部触发的事件会一直冒泡至包含 React 树的祖先，即便这些元素并不是 DOM 树中的祖先</strong>。</p>
+<h1 id="Refs-及转发"><a href="#Refs-及转发" class="headerlink" title="Refs 及转发"></a>Refs 及转发</h1><p>适合使用 refs 的情况：</p>
+<ul>
+<li>管理焦点，文本选择或媒体播放。</li>
+<li>触发强制动画。</li>
+<li>集成第三方 DOM 库。</li>
+</ul>
+<p><strong>避免使用 refs 来做任何可以通过声明式实现来完成的事情</strong>。</p>
+<h2 id="创建-Refs"><a href="#创建-Refs" class="headerlink" title="创建 Refs"></a>创建 Refs</h2><ul>
+<li><code>React.createRef()</code></li>
+<li><code>useRef(initialValue)</code></li>
+</ul>
+<p><strong><code>useRef</code> 返回的 ref 对象在组件的整个生命周期内保持不变</strong>。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useRef, useEffect, createRef, useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyInput</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">const</span> myRef = createRef(<span class="literal">null</span>);</span><br><span class="line">  <span class="keyword">const</span> inputRef = useRef(<span class="literal">null</span>);</span><br><span class="line">  <span class="comment">// 仅执行一次</span></span><br><span class="line">  useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    inputRef.current.focus();</span><br><span class="line">    <span class="built_in">window</span>.myRef = myRef;</span><br><span class="line">    <span class="built_in">window</span>.inputRef = inputRef;</span><br><span class="line">  &#125;, []);</span><br><span class="line">  useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 除了第一次为 true，其余每次都是 false (createRef)</span></span><br><span class="line">    <span class="built_in">console</span>.log(myRef === <span class="built_in">window</span>.myRef);</span><br><span class="line">    <span class="comment">// 始终为 true (useRef)</span></span><br><span class="line">    <span class="built_in">console</span>.log(inputRef === <span class="built_in">window</span>.inputRef);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;input type=<span class="string">"text"</span> ref=&#123;inputRef&#125; /&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; setCount(count + <span class="number">1</span>)&#125;&gt;&#123;count&#125;&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="访问-Refs"><a href="#访问-Refs" class="headerlink" title="访问 Refs"></a>访问 Refs</h2><p>对节点的引用可以在 ref 的 <code>current</code> 属性中被访问。</p>
+<p>ref 的值根据节点的类型而有所不同：</p>
+<ul>
+<li>当 ref 属性用于 HTML 元素时，ref 接收底层 DOM 元素作为其 <code>current</code> 属性。</li>
+<li>当 ref 属性用于自定义组件时，ref 对象接收组件的挂载实例作为其 <code>current</code> 属性。</li>
+<li>不能在函数组件上使用 ref 属性，因为它们没有实例。</li>
+</ul>
+<blockquote>
+<p>React 会在组件挂载时给 <code>current</code> 属性传入 DOM 元素，并在组件卸载时传入 <code>null</code> 值。ref 会在 <code>componentDidMount</code> 或 <code>componentDidUpdate</code> 生命周期钩子触发前更新。</p>
+</blockquote>
+<blockquote>
+<p><code>useRef</code> 返回的 ref 对象，其 <code>current</code> 属性被初始化为传入的参数（<code>initialValue</code>）。</p>
+</blockquote>
+<p><strong>因为 <code>useRef</code> 返回的 ref 对象在组件的整个生命周期内保持不变，因此它可以很方便地<a href="https://zh-hans.reactjs.org/docs/hooks-faq.html#is-there-something-like-instance-variables" target="_blank" rel="noopener">保存任何可变值</a>，其类似于在 class 中使用实例字段的方式</strong>。</p>
+<h2 id="回调-Refs"><a href="#回调-Refs" class="headerlink" title="回调 Refs"></a>回调 Refs</h2><p>回调 Refs 接受 React 组件实例或 HTML DOM 元素作为参数。</p>
+<blockquote>
+<p>React 将在组件挂载时，调用 ref 回调函数并传入 DOM 元素，当卸载时调用它并传入 <code>null</code>。在 <code>componentDidMount</code> 或 <code>componentDidUpdate</code> 触发前，React 会保证 refs 一定是最新的。</p>
+</blockquote>
+<blockquote>
+<p>如果 ref 回调函数是以内联函数的方式定义的，在更新过程中它会被执行两次，第一次传入参数 <code>null</code>，然后第二次会传入参数 DOM 元素。这是因为在每次渲染时会创建一个新的函数实例，但是大多数情况下它是无关紧要的。</p>
+</blockquote>
+<h2 id="Refs-转发"><a href="#Refs-转发" class="headerlink" title="Refs 转发"></a>Refs 转发</h2><p>refs 并不包含在 <code>props</code> 中，可以使用 <code>React.forwardRef((props, ref) =&gt; {})</code> 包裹组件，通过第二个参数获取传入的 refs。</p>
+<blockquote>
+<p>第二个参数 <code>ref</code> 只在使用 <code>React.forwardRef</code> 定义组件时存在，常规函数和 class 组件不接收 <code>ref</code> 参数。</p>
+</blockquote>
 <h1 id="异步渲染"><a href="#异步渲染" class="headerlink" title="异步渲染"></a>异步渲染</h1><p>React Fiber 将 React 的工作分为两个阶段</p>
 <ul>
 <li><p>渲染（render）阶段</p>
@@ -452,7 +491,7 @@ height:50vh;
 <li><code>setState</code> 更新函数（第一个参数）</li>
 </ul>
 <p>渲染阶段的行为意味着 React 可以在提交之前多次调用渲染阶段的生命周期方法，或者在不提交的情况下调用它们，因此不要在它们内部编写副作用相关的代码，并且由于 <code>Suspense</code> 的存在，<code>render</code> 中调用的函数应该至少是幂等的。</p>
-<h1 id="错误边界"><a href="#错误边界" class="headerlink" title="错误边界"></a>错误边界</h1><p>如果一个 <code>class</code> 组件中定义了 <code>static getDerivedStateFromError()</code> 或 <code>componentDidCatch()</code> 这两个生命周期方法中的任意一个（或两个）时，那么它就变成一个错误边界，当抛出错误后，可使用 <code>static getDerivedStateFromError()</code> 渲染备用 UI ，使用 <code>componentDidCatch()</code> 打印错误信息。</p>
+<h1 id="错误边界"><a href="#错误边界" class="headerlink" title="错误边界"></a>错误边界</h1><p>如果一个 class 组件中定义了 <code>static getDerivedStateFromError()</code> 或 <code>componentDidCatch()</code> 这两个生命周期方法中的任意一个（或两个）时，那么它就变成一个错误边界，当抛出错误后，可使用 <code>static getDerivedStateFromError()</code> 渲染备用 UI ，使用 <code>componentDidCatch()</code> 打印错误信息。</p>
 <p><code>getDerivedStateFromError</code> 会在渲染（render）阶段中被调用，<code>componentDidCatch</code> 会在提交（commit）阶段中被调用，因此<strong>在 <code>getDerivedStateFromError</code> 中不应该出现副作用</strong>。</p>
 <p>错误边界无法捕获以下场景中产生的错误：</p>
 <ul>
@@ -460,6 +499,21 @@ height:50vh;
 <li>异步代码（例如 <code>setTimeout</code> 或 <code>requestAnimationFrame</code> 回调函数）</li>
 <li>服务端渲染</li>
 <li>它自身抛出来的错误（并非它的子组件）</li>
+</ul>
+<h1 id="高阶组件的实现"><a href="#高阶组件的实现" class="headerlink" title="高阶组件的实现"></a>高阶组件的实现</h1><ol>
+<li>属性代理</li>
+</ol>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">HOC</span>(<span class="params">Comp</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">      <span class="keyword">super</span>(props);</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Comp</span> &#123;<span class="attr">...props</span>&#125; /&gt;</span>;</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>反向继承</li>
+</ol>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">HOC</span>(<span class="params">Comp</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">Comp</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">super</span>.render();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>相较于属性代理方式，使用反向继承方式实现的高阶组件的特点是允许高阶组件通过 <code>this</code> 访问到原组件，还可以劫持原组件的生命周期函数（包括 <code>render</code>），但只适用于 class 组件。</p>
+<ul>
+<li>属性代理是从“组合”的角度出发，从外部去操作原组件。</li>
+<li>反向继承则是从“继承”的角度出发，从内部去操作原组件。</li>
 </ul>
 <h1 id="使用状态管理工具的场景"><a href="#使用状态管理工具的场景" class="headerlink" title="使用状态管理工具的场景"></a>使用状态管理工具的场景</h1><ol>
 <li>某个组件的状态需要被共享；</li>
@@ -475,13 +529,18 @@ height:50vh;
             <p>原文作者：<a href="http://hitsuki9.github.io">Histuki9</a>
             <p>原文链接：<a href="http://hitsuki9.github.io/react/">http://hitsuki9.github.io/react/</a>
             <p>发表日期：<a href="http://hitsuki9.github.io/react/">December 26th 2019, 12:00:00 am</a>
-            <p>更新日期：<a href="http://hitsuki9.github.io/react/">January 13th 2020, 10:42:34 pm</a>
-            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+            <p>更新日期：<a href="http://hitsuki9.github.io/react/">March 15th 2020, 9:50:48 pm</a>
+            <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
      -->
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/css/" title= "CSS 知识点整理">
+                    <div class="nextTitle">CSS 知识点整理</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -596,7 +655,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#setState"><span class="toc-number">1.</span> <span class="toc-text">setState</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Context"><span class="toc-number">2.</span> <span class="toc-text">Context</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Portals"><span class="toc-number">3.</span> <span class="toc-text">Portals</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#异步渲染"><span class="toc-number">4.</span> <span class="toc-text">异步渲染</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#错误边界"><span class="toc-number">5.</span> <span class="toc-text">错误边界</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用状态管理工具的场景"><span class="toc-number">6.</span> <span class="toc-text">使用状态管理工具的场景</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#setState"><span class="toc-number">1.</span> <span class="toc-text">setState</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Context"><span class="toc-number">2.</span> <span class="toc-text">Context</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Portals"><span class="toc-number">3.</span> <span class="toc-text">Portals</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Refs-及转发"><span class="toc-number">4.</span> <span class="toc-text">Refs 及转发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建-Refs"><span class="toc-number">4.1.</span> <span class="toc-text">创建 Refs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#访问-Refs"><span class="toc-number">4.2.</span> <span class="toc-text">访问 Refs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#回调-Refs"><span class="toc-number">4.3.</span> <span class="toc-text">回调 Refs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Refs-转发"><span class="toc-number">4.4.</span> <span class="toc-text">Refs 转发</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#异步渲染"><span class="toc-number">5.</span> <span class="toc-text">异步渲染</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#错误边界"><span class="toc-number">6.</span> <span class="toc-text">错误边界</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#高阶组件的实现"><span class="toc-number">7.</span> <span class="toc-text">高阶组件的实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用状态管理工具的场景"><span class="toc-number">8.</span> <span class="toc-text">使用状态管理工具的场景</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -676,9 +735,22 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 7
+        Total : 8
         </div>
         <!-- search  -->
         
@@ -688,6 +760,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/15</span><a class="archive-post-title" href= "/css/" >CSS 知识点整理</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
@@ -723,8 +809,17 @@ top:50vh;
         </li>
     
     
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
         <li class="archive-post-item">
-            <span class="archive-post-date">07/24</span><a class="archive-post-title" href= "/hello-world/" >Hello World</a>
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/hello-world/" >Hello World</a>
         </li>
     
     </div>
