@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">225</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">466</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -406,9 +406,21 @@ height:50vh;
 </li>
 <li><p>表现为“外部尺寸”的块级元素一旦设置了宽度，其流动性就丢失了。所谓流动性，即是一种 <code>margin/border/padding/content</code> 区域自动分配水平空间的机制。</p>
 </li>
-<li><p>对于绝对定位的非替换元素，当 <code>left</code> 和 <code>right</code> 同时存在时，元素的宽度表现为“格式化宽度”，其宽度大小相对于最近的具有定位特性的祖先元素计算。<strong>此外，“格式化宽度”也具有流动性</strong>。</p>
+<li><p>对于绝对定位的非替换元素，当 <code>left</code> 和 <code>right</code> 同时存在时，元素的宽度表现为“格式化宽度”，其宽度大小相对于最近的具有定位特性的祖先元素计算。<strong>此外，“格式化宽度”也具有流动性</strong>，也有“格式化高度”。</p>
+</li>
+<li><p>容器盒子又被分成了 4 个盒子，分别是 content box、padding box、border box 和 margin box，默认情况下（<code>box-sizing: content-box</code>），<code>width</code> 作用在 content box 上，而当 <code>box-sizing: border-box</code> 时，<code>width</code> 则直接作用到了 border-box 上，且内部具有流动性。</p>
+</li>
+<li><p>对于 <code>width</code> 属性，就算父元素 <code>width: auto</code>，其百分比值也是支持的，但是对于 <code>height</code> 属性，如果父元素 <code>height: auto</code>，则只要子元素在文档流中，其百分比值就完全被忽略了。<strong>对于普通文档流中的元素，百分比高度值要想起作用，其父级必须有一个可以生效的高度值</strong>。</p>
+</li>
+<li><p><code>element.offsetWidth</code> 是一个只读属性，返回一个元素的布局宽度，包含 border、padding、scrollbar 和 content。<code>element.offsetHeight</code> 同理。</p>
+<blockquote>
+<p>该属性将会四舍五入为一个整数，如果想要一个小数值，请使用 <code>element.getBoundingClientRect()</code>。</p>
+</blockquote>
 </li>
 </ul>
+<blockquote>
+<p>无宽度原则、宽度分离原则</p>
+</blockquote>
 
     </article>
     <!-- license  -->
@@ -417,7 +429,7 @@ height:50vh;
             <p>原文作者：<a href="http://hitsuki9.github.io">Histuki9</a>
             <p>原文链接：<a href="http://hitsuki9.github.io/css/">http://hitsuki9.github.io/css/</a>
             <p>发表日期：<a href="http://hitsuki9.github.io/css/">March 15th 2020, 12:00:00 am</a>
-            <p>更新日期：<a href="http://hitsuki9.github.io/css/">March 15th 2020, 10:49:52 pm</a>
+            <p>更新日期：<a href="http://hitsuki9.github.io/css/">March 18th 2020, 10:39:31 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
      -->
@@ -426,8 +438,8 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/hello-world/" title= "Hello World">
-                    <div class="nextTitle">Hello World</div>
+                <a href= "/design-patterns/" title= "设计模式">
+                    <div class="nextTitle">设计模式</div>
                 </a>
             
         </li>
@@ -634,8 +646,6 @@ top:50vh;
     
     
     
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 8
@@ -651,6 +661,16 @@ top:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "/ecmascript-2015/" >《ECMAScript 6 入门》读书笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/04</span><a class="archive-post-title" href= "/design-patterns/" >设计模式</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -673,11 +693,6 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/15</span><a class="archive-post-title" href= "/ecmascript-2015/" >《ECMAScript 6 入门》读书笔记</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">10/01</span><a class="archive-post-title" href= "/vue/" >Vue 知识点整理</a>
         </li>
     
@@ -696,28 +711,14 @@ top:50vh;
             <span class="archive-post-date">09/19</span><a class="archive-post-title" href= "/git/" >Git 实用指南</a>
         </li>
     
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/hello-world/" >Hello World</a>
-        </li>
-    
     </div>
   </div>
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
-    
         <span class="sidebar-tag-name" data-tags="前端"><span class="iconfont-archer">&#xe606;</span>前端</span>
+    
+        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
     
         <span class="sidebar-tag-name" data-tags="正则"><span class="iconfont-archer">&#xe606;</span>正则</span>
     
@@ -754,9 +755,9 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
-    
         <span class="sidebar-category-name" data-categories="创作集"><span class="iconfont-archer">&#xe60a;</span>创作集</span>
+    
+        <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

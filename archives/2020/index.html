@@ -346,25 +346,71 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/hello-world/" >
+        <a class="abstract-title" href = "/ecmascript-2015/" >
             
-                <span>Hello World</span>
+                <span>《ECMAScript 6 入门》读书笔记</span>
         </a>
         <div class="abstract-content">
-            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new "My New Post"
+            let 和 const 命令let 命令不存在变量提升var 命令会发生“变量提升”现象，即变量可以在声明之前使用，值为 undefined。
+12345678console.log(foo); // 输出 undefinedvar foo = 2;// 等价于var foo; // undefinedconsole.log(foo); // 输出 undefinedfoo = 2;
 
-More info: Writing
-Run server1$ hexo server
+let 命令所声明的变量一定要在声明后使用，否则报 ReferenceError错误。
 
-Mo...
+暂时性死区只要块级作用域内存在 let 命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/15</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/27</span>
             </div>
             <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "前端">前端</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/design-patterns/" >
+            
+                <span>设计模式</span>
+        </a>
+        <div class="abstract-content">
+            SOLID 设计原则
+单一功能原则（Single Responsibility Principle）
+
+开放封闭原则（Opened Closed Principle）
+
+里式替换原则（Liskov Substitution Principle）
+
+接口隔离原则（Interface Segregation Principle）
+
+依赖反转原则（Dependency Inversion Principle）
+
+
+
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "前端">前端</a>
+    
+</div>
             
         </div>
     </article>
@@ -385,10 +431,7 @@ Mo...
 
 表现为“外部尺寸”的块级元素一旦设置了宽度，其流动性就丢失了。所谓流动性，即是一种 margin/border/padding/content 区域自动分配水平空间的机制。
 
-对于绝对定位的非替换元素，当 left 和 right 同时存在时，元素的宽度表现为“格式化宽度”，其宽度大小相对于最近的具有定位特性的祖先元素计算。此外，“格式化宽度”也具有流动性。
-
-
-
+对于绝对定位的非替换元素，当 left 和 right 同时存在时，元素的宽度表现为“格式化宽度”，其宽度大小相对于最近的具有定位特性的祖先元素计算。此外，“格式化宽度”也具有流动性，也有...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -570,8 +613,6 @@ Mo...
     
     
     
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 8
@@ -587,6 +628,16 @@ Mo...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "/ecmascript-2015/" >《ECMAScript 6 入门》读书笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/04</span><a class="archive-post-title" href= "/design-patterns/" >设计模式</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -609,11 +660,6 @@ Mo...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/15</span><a class="archive-post-title" href= "/ecmascript-2015/" >《ECMAScript 6 入门》读书笔记</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">10/01</span><a class="archive-post-title" href= "/vue/" >Vue 知识点整理</a>
         </li>
     
@@ -632,28 +678,14 @@ Mo...
             <span class="archive-post-date">09/19</span><a class="archive-post-title" href= "/git/" >Git 实用指南</a>
         </li>
     
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/hello-world/" >Hello World</a>
-        </li>
-    
     </div>
   </div>
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
-    
         <span class="sidebar-tag-name" data-tags="前端"><span class="iconfont-archer">&#xe606;</span>前端</span>
+    
+        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
     
         <span class="sidebar-tag-name" data-tags="正则"><span class="iconfont-archer">&#xe606;</span>正则</span>
     
@@ -690,9 +722,9 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
-    
         <span class="sidebar-category-name" data-categories="创作集"><span class="iconfont-archer">&#xe60a;</span>创作集</span>
+    
+        <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

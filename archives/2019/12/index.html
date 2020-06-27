@@ -351,11 +351,13 @@
                 <span>React 知识点整理</span>
         </a>
         <div class="abstract-content">
-            setStatesetState 通过一个队列机制来实现 state 更新，当执行 setState() 时，会将需要更新的 state 浅合并后放入状态队列，而不会立即更新 state，队列机制可以高效地批量更新 state。
-setState 并不是真正意义上的异步操作，它只是模拟了异步的行为。
+            React.createElement1React.createElement(type, [props], [...children]);
 
-setState 只在合成事件和生命周期函数中是“异步”的，在原生事件和 setTimeout 等不受 react 控制的场景中都是同步的。
-setState 的“异步”并不是说其内部由异步代码实现，其本身执行的过程和代码都是同步的，只是合成事件和生命周期函数的调用顺序在更新之前，导致在合...
+创建并返回指定类型的新 React 元素，类型参数可以是原生标签名字符串，也可以是 React 组件或是 React fragment。
+React.cloneElement1React.cloneElement(element, [props], [...children]);
+
+几乎等同于：
+123&lt;element.type &#123;...element.props&#125; &#123;...props&#125;&gt;  &...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -537,8 +539,6 @@ setState 的“异步”并不是说其内部由异步代码实现，其本身�
     
     
     
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 8
@@ -554,6 +554,16 @@ setState 的“异步”并不是说其内部由异步代码实现，其本身�
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "/ecmascript-2015/" >《ECMAScript 6 入门》读书笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/04</span><a class="archive-post-title" href= "/design-patterns/" >设计模式</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -576,11 +586,6 @@ setState 的“异步”并不是说其内部由异步代码实现，其本身�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/15</span><a class="archive-post-title" href= "/ecmascript-2015/" >《ECMAScript 6 入门》读书笔记</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">10/01</span><a class="archive-post-title" href= "/vue/" >Vue 知识点整理</a>
         </li>
     
@@ -599,28 +604,14 @@ setState 的“异步”并不是说其内部由异步代码实现，其本身�
             <span class="archive-post-date">09/19</span><a class="archive-post-title" href= "/git/" >Git 实用指南</a>
         </li>
     
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/hello-world/" >Hello World</a>
-        </li>
-    
     </div>
   </div>
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
-    
         <span class="sidebar-tag-name" data-tags="前端"><span class="iconfont-archer">&#xe606;</span>前端</span>
+    
+        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
     
         <span class="sidebar-tag-name" data-tags="正则"><span class="iconfont-archer">&#xe606;</span>正则</span>
     
@@ -657,9 +648,9 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
-    
         <span class="sidebar-category-name" data-categories="创作集"><span class="iconfont-archer">&#xe60a;</span>创作集</span>
+    
+        <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

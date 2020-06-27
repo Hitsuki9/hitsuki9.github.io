@@ -401,7 +401,7 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="打包流程"><a href="#打包流程" class="headerlink" title="打包流程"></a>打包流程</h1><p><img src="../assets/webpack.jpg" alt="webpack打包流程" title="webpack打包流程"></p>
+        <h1 id="打包流程"><a href="#打包流程" class="headerlink" title="打包流程"></a>打包流程</h1><p><img src="../assets/webpack.jpg" alt="webpack打包流程"></p>
 <p>&nbsp;</p>
 <h1 id="entry"><a href="#entry" class="headerlink" title="entry"></a>entry</h1><p><code>string | [string] | object { \&lt;key\&gt;: string | [string] } | (function: () =&gt; string | [string] | object { \&lt;key\&gt;: string | [string] })</code></p>
 <p>如果传入一个字符串或字符串数组，chunk 会被命名为 <code>main</code>。如果传入一个对象，则每个键（key）会是 chunk 的名称。</p>
@@ -409,7 +409,7 @@ height:50vh;
 <h1 id="output"><a href="#output" class="headerlink" title="output"></a>output</h1><h2 id="output-filename"><a href="#output-filename" class="headerlink" title="output.filename"></a>output.filename</h2><p><code>string</code> <code>function</code></p>
 <p>此选项决定了每个输出 bundle 的名称。这些 bundle 将写入到 <code>output.path</code> 选项指定的目录下。</p>
 <p>对于单个入口起点，<code>filename</code> 会是一个静态名称。</p>
-<p>当通过多个入口起点(entry point)、代码拆分(code splitting)或各种插件(plugin)创建多个 bundle，应该使用以下替换方式来赋予每个 bundle 一个唯一的名称。</p>
+<p>当通过多个入口起点、代码拆分或各种插件创建多个 bundle，应该使用以下替换方式来赋予每个 bundle 一个唯一的名称。</p>
 <ol>
 <li>使用入口名称</li>
 </ol>
@@ -469,7 +469,7 @@ height:50vh;
 <h3 id="libraryTarget-“global”"><a href="#libraryTarget-“global”" class="headerlink" title="libraryTarget: “global”"></a>libraryTarget: “global”</h3><p>同 <code>libraryTarget: &quot;window&quot;</code> 。</p>
 <hr>
 <h3 id="libraryTarget-“commonjs”"><a href="#libraryTarget-“commonjs”" class="headerlink" title="libraryTarget: “commonjs”"></a>libraryTarget: “commonjs”</h3><p>入口起点的返回值将使用 <code>output.library</code> 中定义的值，分配给 <code>exports</code> 对象。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exports[<span class="string">'MyLibrary'</span>] = _entry_return_;</span><br><span class="line"></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'MyLibrary'</span>).doSomething();</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exports[<span class="string">'MyLibrary'</span>] = _entry_return_;</span><br><span class="line"></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'MyLibrary'</span>).MyLibrary.doSomething();</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>不设置 <code>output.library</code> 将导致由入口起点返回的所有属性，都会被赋值给给定的对象，且并不会检查现有的属性名是否存在。（3.3.3 ~ 3.3.6）</p>
@@ -484,7 +484,7 @@ height:50vh;
 <hr>
 <h3 id="libraryTarget-“amd”"><a href="#libraryTarget-“amd”" class="headerlink" title="libraryTarget: “amd”"></a>libraryTarget: “amd”</h3><p>将 library 暴露为 AMD 模块。</p>
 <hr>
-<h3 id="libraryTarget-“umd”"><a href="#libraryTarget-“umd”" class="headerlink" title="libraryTarget: “umd”"></a>libraryTarget: “umd”</h3><p>将 library 暴露为所有的模块定义下都可运行的方式。它将在 CommonJS, AMD 环境下运行，或将模块导出到 <code>global</code> 下的变量。（<strong>万金油</strong>）</p>
+<h3 id="libraryTarget-“umd”"><a href="#libraryTarget-“umd”" class="headerlink" title="libraryTarget: “umd”"></a>libraryTarget: “umd”</h3><p>将 library 暴露为所有的模块定义下都可运行的方式。它将在 CommonJS, AMD 环境下运行，或将模块导出到 <code>global</code> 下的变量。</p>
 <blockquote>
 <p>省略 <code>output.library</code> 会导致将入口起点返回的所有属性，直接赋值给 root 对象。（同 3.3.6 引用）</p>
 </blockquote>
@@ -581,7 +581,7 @@ height:50vh;
 <h3 id="style-loader"><a href="#style-loader" class="headerlink" title="style-loader"></a>style-loader</h3><p>将 <code>css-loader</code> 解析得到的内容注入到 HTML 页面中的 <code>\&lt;style\&gt;</code> 标签中。</p>
 <hr>
 <h3 id="babel-loader"><a href="#babel-loader" class="headerlink" title="babel-loader"></a>babel-loader</h3><p>babel 总共分为三个阶段：解析，转换，生成。</p>
-<p><img src="../assets/babel.png" alt="babel转化过程" title="babel转化过程"></p>
+<p><img src="../assets/babel.png" alt="babel转化过程"></p>
 <p>babel 本身是不具备转化功能的，提供这些转化功能的是一个个的 plugin。</p>
 <h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><ol>
 <li>babel.config.js（全局配置）</li>
@@ -743,7 +743,7 @@ height:50vh;
             <p>原文作者：<a href="http://hitsuki9.github.io">Histuki9</a>
             <p>原文链接：<a href="http://hitsuki9.github.io/webpack4/">http://hitsuki9.github.io/webpack4/</a>
             <p>发表日期：<a href="http://hitsuki9.github.io/webpack4/">September 23rd 2019, 12:00:00 am</a>
-            <p>更新日期：<a href="http://hitsuki9.github.io/webpack4/">March 15th 2020, 9:50:48 pm</a>
+            <p>更新日期：<a href="http://hitsuki9.github.io/webpack4/">May 25th 2020, 11:50:33 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
      -->
@@ -960,8 +960,6 @@ top:50vh;
     
     
     
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 8
@@ -977,6 +975,16 @@ top:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "/ecmascript-2015/" >《ECMAScript 6 入门》读书笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/04</span><a class="archive-post-title" href= "/design-patterns/" >设计模式</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -999,11 +1007,6 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/15</span><a class="archive-post-title" href= "/ecmascript-2015/" >《ECMAScript 6 入门》读书笔记</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">10/01</span><a class="archive-post-title" href= "/vue/" >Vue 知识点整理</a>
         </li>
     
@@ -1022,28 +1025,14 @@ top:50vh;
             <span class="archive-post-date">09/19</span><a class="archive-post-title" href= "/git/" >Git 实用指南</a>
         </li>
     
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/hello-world/" >Hello World</a>
-        </li>
-    
     </div>
   </div>
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
-    
         <span class="sidebar-tag-name" data-tags="前端"><span class="iconfont-archer">&#xe606;</span>前端</span>
+    
+        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
     
         <span class="sidebar-tag-name" data-tags="正则"><span class="iconfont-archer">&#xe606;</span>正则</span>
     
@@ -1080,9 +1069,9 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
-    
         <span class="sidebar-category-name" data-categories="创作集"><span class="iconfont-archer">&#xe60a;</span>创作集</span>
+    
+        <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

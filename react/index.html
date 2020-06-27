@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">2.1k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">4.4k</span>阅读时长: <span class="post-count reading-time">16 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -401,16 +401,42 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="setState"><a href="#setState" class="headerlink" title="setState"></a>setState</h1><p><code>setState</code> 通过一个队列机制来实现 <code>state</code> 更新，当执行 <code>setState()</code> 时，会将需要更新的 <code>state</code> 浅合并后放入<strong>状态队列</strong>，而不会立即更新 <code>state</code>，队列机制可以高效地批量更新 <code>state</code>。</p>
+        <h1 id="React-createElement"><a href="#React-createElement" class="headerlink" title="React.createElement"></a>React.createElement</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">React.createElement(type, [props], [...children]);</span><br></pre></td></tr></table></figure>
+
+<p>创建并返回指定类型的新 React 元素，类型参数可以是原生标签名字符串，也可以是 React 组件或是 React fragment。</p>
+<h1 id="React-cloneElement"><a href="#React-cloneElement" class="headerlink" title="React.cloneElement"></a>React.cloneElement</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">React.cloneElement(element, [props], [...children]);</span><br></pre></td></tr></table></figure>
+
+<p>几乎等同于：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;element.type &#123;...element.props&#125; &#123;...props&#125;&gt;</span><br><span class="line">  &#123;children&#125;</span><br><span class="line">&lt;<span class="regexp">/element.type&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>以 <code>element</code> 为样板克隆并返回新的 React 元素。返回元素的 <code>props</code> 是将新的 <code>props</code> 与原始元素的 <code>props</code> 浅层合并后的结果，新的子元素将取代现有的子元素，而来自原始元素的 <code>key</code> 和 <code>ref</code> 将被保留。</p>
+<h1 id="setState"><a href="#setState" class="headerlink" title="setState"></a>setState</h1><p><code>setState</code> 通过一个队列机制来实现 <code>state</code> 更新，当执行 <code>setState()</code> 时，会将需要更新的 <code>state</code> 浅合并后放入<strong>状态队列</strong>，而不会立即更新 <code>state</code>，队列机制可以高效地批量更新 <code>state</code>。</p>
 <p><strong><code>setState</code> 并不是真正意义上的异步操作，它只是模拟了异步的行为。</strong></p>
 <ol>
-<li><code>setState</code> 只在合成事件和生命周期函数中是“异步”的，在原生事件和 <code>setTimeout</code> 等不受 <code>react</code> 控制的场景中都是同步的。</li>
-<li><code>setState</code> 的“异步”并不是说其内部由异步代码实现，其本身执行的过程和代码都是同步的，只是合成事件和生命周期函数的调用顺序在更新之前，导致在合成事件和生命周期函数中没法立马拿到更新后的值，形式了所谓的“异步”，可以通过第二个参数 <code>setState(stateChange, callback)</code> 中的 <code>callback</code> 拿到更新后的结果。</li>
-<li><code>setState</code> 的批量更新优化也是建立在“异步”（合成事件、生命周期函数）之上的，在原生事件和 <code>setTimeout</code> 中并不会批量更新，在“异步”中如果对同一个值进行多次 <code>setState</code>， <code>setState</code> 的批量更新策略会对其进行覆盖，取最后一次的执行，可以通过 <code>setState((state, props) =&gt; stateChange[, callback])</code> 来应对多次 <code>setState</code> 但是不需要将内容合并的场景。</li>
+<li><p><code>setState</code> 只在合成事件和生命周期函数中是“异步”的，在原生事件和 <code>setTimeout</code> 等不受 <code>react</code> 控制的场景中都是同步的。</p>
+</li>
+<li><p><code>setState</code> 的“异步”并不是说其内部由异步代码实现，其本身执行的过程和代码都是同步的，只是合成事件和生命周期函数的调用顺序在更新之前，导致在合成事件和生命周期函数中没法立马拿到更新后的值，形式了所谓的“异步”，可以在第二个参数 <code>callback</code> 中访问更新后的 <code>state</code>。</p>
+</li>
+<li><p><code>setState</code> 的批量更新优化也是建立在“异步”（合成事件、生命周期函数）之上的，在原生事件和 <code>setTimeout</code> 中并不会批量更新，在“异步”中如果对同一个值进行多次 <code>setState</code>， <code>setState</code> 的批量更新策略会对其进行覆盖，取最后一次的执行，可以通过 <code>setState((state, props) =&gt; stateChange[, callback])</code> 来应对多次 <code>setState</code> 但是不需要将内容合并的场景。</p>
+</li>
 </ol>
-<h1 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h1><p>当 <code>Provider</code> 的 <code>value</code> 值发生变化时，它内部的所有消费组件都会重新渲染，<code>Provider</code> 及其内部的 <code>consumer</code> 组件都不受制于 <code>shouldComponentUpdate</code> 函数。</p>
+<h1 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h1><p><img src="../assets/lifecycle.png" alt="生命周期"></p>
+<h2 id="static-getDerivedStateFromProps"><a href="#static-getDerivedStateFromProps" class="headerlink" title="static getDerivedStateFromProps"></a>static getDerivedStateFromProps</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getDerivedStateFromProps(props, state);</span><br></pre></td></tr></table></figure>
+
+<p><code>getDerivedStateFromProps</code> 会在调用 <code>render</code> 方法之前调用，并且在初始挂载及后续更新时都会被调用，使用返回的对象来更新 state，如果返回 <code>null</code> 则不更新任何内容。</p>
+<p><code>getDerivedStateFromProps</code> 是静态方法且是纯函数，不能访问到组件实例，通过这种方式来限制在异步渲染的渲染（render）阶段产生副作用。</p>
+<blockquote>
+<p>此方法适用于罕见的用例，即 <code>state</code> 的值在任何时候都取决于 <code>props</code>。</p>
+</blockquote>
+<blockquote>
+<p>与 <code>UNSAFE_componentWillReceiveProps</code> 不同的是 <code>getDerivedStateFromProps</code> 会在每次渲染前触发，而 <code>UNSAFE_componentWillReceiveProps</code> 则仅在父组件重新渲染时触发，自身状态改变引起的重渲染不会触发。</p>
+</blockquote>
+<h2 id="getSnapshotBeforeUpdate"><a href="#getSnapshotBeforeUpdate" class="headerlink" title="getSnapshotBeforeUpdate"></a>getSnapshotBeforeUpdate</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getSnapshotBeforeUpdate(prevProps, prevState);</span><br></pre></td></tr></table></figure>
+
+<p><code>getSnapshotBeforeUpdate()</code> 在最近一次渲染提交到 DOM 之前调用，<strong>此时 state 已经更新</strong>。使用它能在组件发生更改之前从 DOM 中捕获一些信息（例如，滚动位置）。此生命周期的任何返回值都将作为第三个参数传递给 <code>componentDidUpdate()</code>。</p>
+<h1 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h1><p>当 <code>Provider</code> 的 <code>value</code> 值发生变化时，它内部的所有消费组件都会重新渲染，<strong><code>Provider</code> 及其内部的 <code>Consumer</code> 组件都不受制于 <code>shouldComponentUpdate</code> 和 <code>React.memo</code></strong>。</p>
 <p>通过使用与 <code>Object.is</code> 相同的算法来检测 <code>value</code> 的变化。</p>
-<p>获取 <code>context</code> 的方法：</p>
+<p>获取 context 的方法：</p>
 <ol>
 <li><code>Class.contextType</code></li>
 </ol>
@@ -431,16 +457,24 @@ height:50vh;
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param child React 子元素</span></span><br><span class="line"><span class="comment"> * @param container DOM 元素</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">ReactDOM.createPortal(child, container);</span><br></pre></td></tr></table></figure>
 
 <p><strong>尽管 <code>portal</code> 可以被放置在 DOM 树中的任何地方，但其行为和普通的 React 子节点行为一致。由于 <code>portal</code> 仍存在于 React 树，像 <code>context</code> 这样的功能特性仍可以使用。又由于 React 使用合成事件（并不是绑定在对应 DOM 节点上，而是统一绑定在 <code>document</code> 上），所以一个从 <code>portal</code> 内部触发的事件会一直冒泡至包含 React 树的祖先，即便这些元素并不是 DOM 树中的祖先</strong>。</p>
+<blockquote>
+<p><code>ReactDOM.createPortal</code> 的返回值与 <code>React.createElement</code> 的返回值结构相同，同属 React 元素。</p>
+</blockquote>
 <h1 id="Refs-及转发"><a href="#Refs-及转发" class="headerlink" title="Refs 及转发"></a>Refs 及转发</h1><p>适合使用 refs 的情况：</p>
 <ul>
-<li>管理焦点，文本选择或媒体播放。</li>
-<li>触发强制动画。</li>
-<li>集成第三方 DOM 库。</li>
+<li><p>管理焦点，文本选择或媒体播放。</p>
+</li>
+<li><p>触发强制动画。</p>
+</li>
+<li><p>集成第三方 DOM 库。</p>
+</li>
 </ul>
 <p><strong>避免使用 refs 来做任何可以通过声明式实现来完成的事情</strong>。</p>
 <h2 id="创建-Refs"><a href="#创建-Refs" class="headerlink" title="创建 Refs"></a>创建 Refs</h2><ul>
-<li><code>React.createRef()</code></li>
-<li><code>useRef(initialValue)</code></li>
+<li><p><code>React.createRef()</code></p>
+</li>
+<li><p><code>useRef(initialValue)</code></p>
+</li>
 </ul>
 <p><strong><code>useRef</code> 返回的 ref 对象在组件的整个生命周期内保持不变</strong>。</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useRef, useEffect, createRef, useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyInput</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">const</span> myRef = createRef(<span class="literal">null</span>);</span><br><span class="line">  <span class="keyword">const</span> inputRef = useRef(<span class="literal">null</span>);</span><br><span class="line">  <span class="comment">// 仅执行一次</span></span><br><span class="line">  useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    inputRef.current.focus();</span><br><span class="line">    <span class="built_in">window</span>.myRef = myRef;</span><br><span class="line">    <span class="built_in">window</span>.inputRef = inputRef;</span><br><span class="line">  &#125;, []);</span><br><span class="line">  useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 除了第一次为 true，其余每次都是 false (createRef)</span></span><br><span class="line">    <span class="built_in">console</span>.log(myRef === <span class="built_in">window</span>.myRef);</span><br><span class="line">    <span class="comment">// 始终为 true (useRef)</span></span><br><span class="line">    <span class="built_in">console</span>.log(inputRef === <span class="built_in">window</span>.inputRef);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;input type=<span class="string">"text"</span> ref=&#123;inputRef&#125; /&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; setCount(count + <span class="number">1</span>)&#125;&gt;&#123;count&#125;&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -448,9 +482,12 @@ height:50vh;
 <h2 id="访问-Refs"><a href="#访问-Refs" class="headerlink" title="访问 Refs"></a>访问 Refs</h2><p>对节点的引用可以在 ref 的 <code>current</code> 属性中被访问。</p>
 <p>ref 的值根据节点的类型而有所不同：</p>
 <ul>
-<li>当 ref 属性用于 HTML 元素时，ref 接收底层 DOM 元素作为其 <code>current</code> 属性。</li>
-<li>当 ref 属性用于自定义组件时，ref 对象接收组件的挂载实例作为其 <code>current</code> 属性。</li>
-<li>不能在函数组件上使用 ref 属性，因为它们没有实例。</li>
+<li><p>当 ref 属性用于 HTML 元素时，ref 接收底层 DOM 元素作为其 <code>current</code> 属性。</p>
+</li>
+<li><p>当 ref 属性用于自定义组件时，ref 对象接收组件的挂载实例作为其 <code>current</code> 属性。</p>
+</li>
+<li><p>不能在函数组件上使用 ref 属性，因为它们没有实例。</p>
+</li>
 </ul>
 <blockquote>
 <p>React 会在组件挂载时给 <code>current</code> 属性传入 DOM 元素，并在组件卸载时传入 <code>null</code> 值。ref 会在 <code>componentDidMount</code> 或 <code>componentDidUpdate</code> 生命周期钩子触发前更新。</p>
@@ -481,26 +518,47 @@ height:50vh;
 </ul>
 <p>渲染阶段的生命周期函数包括：</p>
 <ul>
-<li><code>constructor</code></li>
-<li><code>componentWillMount</code></li>
-<li><code>componentWillReceiveProps</code></li>
-<li><code>componentWillUpdate</code></li>
-<li><code>getDerivedStateFromProps</code></li>
-<li><code>shouldComponentUpdate</code></li>
-<li><code>render</code></li>
-<li><code>setState</code> 更新函数（第一个参数）</li>
+<li><p><code>constructor</code></p>
+</li>
+<li><p><code>componentWillMount</code></p>
+</li>
+<li><p><code>componentWillReceiveProps</code></p>
+</li>
+<li><p><code>componentWillUpdate</code></p>
+</li>
+<li><p><code>getDerivedStateFromProps</code></p>
+</li>
+<li><p><code>shouldComponentUpdate</code></p>
+</li>
+<li><p><code>render</code></p>
+</li>
+<li><p><code>setState</code> 更新函数（第一个参数）</p>
+</li>
 </ul>
 <p>渲染阶段的行为意味着 React 可以在提交之前多次调用渲染阶段的生命周期方法，或者在不提交的情况下调用它们，因此不要在它们内部编写副作用相关的代码，并且由于 <code>Suspense</code> 的存在，<code>render</code> 中调用的函数应该至少是幂等的。</p>
 <h1 id="错误边界"><a href="#错误边界" class="headerlink" title="错误边界"></a>错误边界</h1><p>如果一个 class 组件中定义了 <code>static getDerivedStateFromError()</code> 或 <code>componentDidCatch()</code> 这两个生命周期方法中的任意一个（或两个）时，那么它就变成一个错误边界，当抛出错误后，可使用 <code>static getDerivedStateFromError()</code> 渲染备用 UI ，使用 <code>componentDidCatch()</code> 打印错误信息。</p>
 <p><code>getDerivedStateFromError</code> 会在渲染（render）阶段中被调用，<code>componentDidCatch</code> 会在提交（commit）阶段中被调用，因此<strong>在 <code>getDerivedStateFromError</code> 中不应该出现副作用</strong>。</p>
 <p>错误边界无法捕获以下场景中产生的错误：</p>
 <ul>
-<li>事件处理</li>
-<li>异步代码（例如 <code>setTimeout</code> 或 <code>requestAnimationFrame</code> 回调函数）</li>
-<li>服务端渲染</li>
-<li>它自身抛出来的错误（并非它的子组件）</li>
+<li><p>事件处理</p>
+</li>
+<li><p>异步代码（例如 <code>setTimeout</code> 或 <code>requestAnimationFrame</code> 回调函数）</p>
+</li>
+<li><p>服务端渲染</p>
+</li>
+<li><p>它自身抛出来的错误（并非它的子组件）</p>
+</li>
 </ul>
-<h1 id="高阶组件的实现"><a href="#高阶组件的实现" class="headerlink" title="高阶组件的实现"></a>高阶组件的实现</h1><ol>
+<h1 id="解决横切关注点的三种方式（逻辑复用）"><a href="#解决横切关注点的三种方式（逻辑复用）" class="headerlink" title="解决横切关注点的三种方式（逻辑复用）"></a>解决横切关注点的三种方式（逻辑复用）</h1><ol>
+<li><p>高阶组件</p>
+</li>
+<li><p>render props</p>
+</li>
+<li><p>Hooks</p>
+</li>
+</ol>
+<h1 id="高阶组件"><a href="#高阶组件" class="headerlink" title="高阶组件"></a>高阶组件</h1><p>高阶组件本质是一个纯函数，接收一个或多个组件，返回一个全新的组件。</p>
+<h2 id="高阶组件的实现"><a href="#高阶组件的实现" class="headerlink" title="高阶组件的实现"></a>高阶组件的实现</h2><ol>
 <li>属性代理</li>
 </ol>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">HOC</span>(<span class="params">Comp</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">      <span class="keyword">super</span>(props);</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Comp</span> &#123;<span class="attr">...props</span>&#125; /&gt;</span>;</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
@@ -512,14 +570,110 @@ height:50vh;
 
 <p>相较于属性代理方式，使用反向继承方式实现的高阶组件的特点是允许高阶组件通过 <code>this</code> 访问到原组件，还可以劫持原组件的生命周期函数（包括 <code>render</code>），但只适用于 class 组件。</p>
 <ul>
-<li>属性代理是从“组合”的角度出发，从外部去操作原组件。</li>
-<li>反向继承则是从“继承”的角度出发，从内部去操作原组件。</li>
+<li><p>属性代理是从“组合”的角度出发，从外部去操作原组件。</p>
+</li>
+<li><p>反向继承则是从“继承”的角度出发，从内部去操作原组件。</p>
+</li>
 </ul>
+<h1 id="React-memo"><a href="#React-memo" class="headerlink" title="React.memo"></a>React.memo</h1><p><code>React.memo</code> 为高阶组件，作用与 <code>React.PureComponent</code> 相似，但只适用于函数组件。</p>
+<p>如果函数组件在给定相同 <code>props</code> 的情况下渲染相同的结果，可以将其包装在 <code>React.memo</code> 中，以此通过记忆组件渲染结果的方式来提高组件的性能。在这种情况下，React 将跳过渲染组件的操作并直接复用最近一次渲染的结果。</p>
+<p><code>React.memo</code> <strong>仅检查</strong> <code>props</code> 变更，如果函数组件被 <code>React.memo</code> 包裹，且其实现中拥有 <code>useState</code> 或 <code>useContext</code> 的 Hook，当 <code>state</code> 或 <code>context</code> 发生变化时，它仍会重新渲染。</p>
+<blockquote>
+<p>默认情况下其只会对复杂对象做浅层对比，如果想要控制对比过程，可将自定义的比较函数通过第二个参数传入来实现，<strong>且返回值与是否渲染的关系和 <code>shouldComponentUpdate()</code> 相反</strong>。</p>
+</blockquote>
+<h1 id="render-props"><a href="#render-props" class="headerlink" title="render props"></a>render props</h1><p>render prop 是一个用于告知组件需要渲染什么内容的函数 prop。</p>
+<blockquote>
+<p>可以使用带有 render props 的常规组件来实现大多数高阶组件。</p>
+</blockquote>
+<p>任何被用于告知组件需要渲染什么内容的函数 prop 在技术上都可以被称为 render prop。</p>
+<blockquote>
+<p>使用 render props 可能会抵消使用 <code>React.PureComponent</code> 带来的优势，因为 render props 可能总是会生成一个新的函数。</p>
+</blockquote>
+<h1 id="Hooks"><a href="#Hooks" class="headerlink" title="Hooks"></a>Hooks</h1><h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><p>使用 <code>useState</code> 更新 state 时总是替换它而不是像 <code>setState</code> 一样合并它。</p>
+<p>如果新的 state 需要通过使用先前的 state 计算得出，那么可以将函数传递给 setState，该函数将接收先前的 state，并返回一个更新后的值。<strong>如果更新函数的返回值与当前的 state 完全相同，React 将跳过子组件的渲染及 effect 的执行，不使用函数式更新也是如此，内部使用 <code>Object.is()</code> 进行比较</strong>。</p>
+<p><code>initialState</code> 参数可以是函数，其只会在组件的初始渲染中被调用，后续渲染时会被忽略。如果初始 state 需要通过复杂计算获得，则可以通过该函数计算并返回初始的 state，该过程称为惰性初始 state。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [state, setState] = useState(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> initialState = someExpensiveComputation(props);</span><br><span class="line">  <span class="keyword">return</span> initialState;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h2><p>可以把 <code>useEffect</code> 看做 <code>componentDidMount</code>，<code>componentDidUpdate</code> 和 <code>componentWillUnmount</code> 这三个函数的组合。</p>
+<p>每次重新渲染都会生成新的 effect 替换掉之前的。</p>
+<blockquote>
+<p>某种意义上讲，effect 更像是渲染结果的一部分 —— 每个 effect “属于”一次特定的渲染。</p>
+</blockquote>
+<p><strong>与 <code>componentDidMount</code> 或 <code>componentDidUpdate</code> 不同，在浏览器完成布局与绘制之后，传给 <code>useEffect</code> 的函数才会被延迟调用，因此不会阻塞浏览器更新视图</strong>。</p>
+<p>React 会在执行当前 effect 之前对上一个 effect 进行清除，如果 effect 返回一个函数，React 将会在执行清除操作时调用它。</p>
+<p>React 将按照 effect 声明的顺序依次调用组件中的每一个 effect。</p>
+<p>如果某些特定值在两次重渲染之间没有发生变化，你可以通知 React 跳过对 effect 的调用，只要传递数组作为 useEffect 的第二个可选参数即可。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">document</span>.title = <span class="string">`You clicked <span class="subst">$&#123;count&#125;</span> times`</span>;</span><br><span class="line">&#125;, [count]); <span class="comment">// 仅在 count 更改时调用</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果数组中有多个元素，即使只有一个元素发生变化，React 也会执行 effect。</p>
+</blockquote>
+<p>如果想让 effect 仅在组件挂载和卸载时执行则可以传递一个空数组 <code>[]</code> 作为第二个参数。</p>
+<h2 id="useLayoutEffect"><a href="#useLayoutEffect" class="headerlink" title="useLayoutEffect"></a>useLayoutEffect</h2><p>函数签名与 <code>useEffect</code> 相同，但它会在所有的 DOM 变更之后，浏览器重新绘制之前同步调用 effect，因此会阻塞浏览器更新视图。</p>
+<blockquote>
+<p><code>useLayoutEffect</code> 与 <code>componentDidMount</code>、<code>componentDidUpdate</code> 的调用阶段是一样的。</p>
+</blockquote>
+<h2 id="useContext"><a href="#useContext" class="headerlink" title="useContext"></a>useContext</h2><p>接收一个 context 对象（<code>React.createContext</code> 的返回值）并返回该 context 的当前值，context 的值由上层组件中距离当前组件最近的 <code>&lt;Context.Provider&gt;</code> 的 <code>value</code> prop 决定。</p>
+<p>当组件上层最近的 <code>&lt;Context.Provider&gt;</code> 更新时，该 Hook 会触发重渲染，并使用最新的 context 值。</p>
+<h2 id="useReducer"><a href="#useReducer" class="headerlink" title="useReducer"></a>useReducer</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [state, dispatch] = useReducer(reducer, initialArg, init);</span><br></pre></td></tr></table></figure>
+
+<p><code>useState</code> 的替代方案，接收一个形如 <code>(state, action) =&gt; newState</code> 的 reducer，并返回当前的 state 以及与其配套的 <code>dispatch</code> 方法。</p>
+<p>有两种不同初始化 <code>useReducer</code> state 的方式。</p>
+<ol>
+<li>将初始 state 作为第二个参数传入 <code>useReducer</code> 是最简单的方法：</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [state, dispatch] = useReducer(reducer, &#123; <span class="attr">count</span>: initialCount &#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>React 不使用 <code>state = initialState</code> 这一由 Redux 推广开来的参数约定，因为有时候初始值依赖于 props，因此需要在调用 Hook 时指定</strong>。</p>
+</blockquote>
+<ol start="2">
+<li>惰性地创建初始 state。将 <code>init</code> 函数作为 <code>useReducer</code> 的第三个参数传入，这样初始 state 将被设置为 <code>init(initialArg)</code>。</li>
+</ol>
+<blockquote>
+<p>如果 <code>dispatch</code> 后的 state 与当前 state 相同，React 将跳过子组件的渲染及副作用的执行，内部使用 <code>Object.is</code> 比较算法来比较 state。</p>
+</blockquote>
+<blockquote>
+<p><code>dispatch</code> 永远不会变，因此使用 context 传递 <code>dispatch</code> 不会使子组件重新渲染。</p>
+</blockquote>
+<h2 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a>useCallback</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> memoizedCallback = useCallback(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  doSomething(a, b);</span><br><span class="line">&#125;, [a, b]);</span><br></pre></td></tr></table></figure>
+
+<p>把内联回调函数及依赖项数组作为参数传入 <code>useCallback</code>，它将返回该回调函数的缓存版本，该回调函数仅在某个依赖项改变时才会更新。</p>
+<p><strong><code>useCallback(fn, deps)</code> 相当于 <code>useMemo(() =&gt; fn, deps)</code></strong>。</p>
+<h2 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> memoizedValue = useMemo(<span class="function"><span class="params">()</span> =&gt;</span> computeExpensiveValue(a, b), [a, b]);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>与 <code>useCallback</code> 的区别：<strong><code>useCallback</code> 返回一个 memoized 回调函数，而 <code>useMemo</code> 返回一个 memoized 值</strong>。</p>
+</blockquote>
+<p><code>useMemo</code> 仅会在某个依赖项改变时才重新计算 memoized 值。</p>
+<p>传入 <code>useMemo</code> 的函数会在渲染期间执行。</p>
+<p><strong>可以把 <code>useMemo</code> 作为性能优化的手段，但不要把它当成语义上的保证。将来 React 可能会选择“遗忘”以前的一些 memoized 值，并在下次渲染时重新计算它们，因此应该先编写在没有 <code>useMemo</code> 的情况下也可以执行的代码，之后再考虑在代码中添加 <code>useMemo</code> 以达到优化性能的目的</strong>。</p>
+<h2 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a>useRef</h2><p><code>useRef</code> 返回一个 ref 对象，其 <code>.current</code> 属性被初始化为传入的参数。<strong>返回的 ref 对象在组件的整个生命周期内保持不变</strong>。</p>
+<p>当 ref 对象内容发生变化时，<code>useRef</code> 并不会发出通知，变更 <code>.current</code> 属性也不会引发组件重新渲染。如果想要在 React 绑定或解绑 DOM 节点的 ref 时运行某些代码，则需要使用回调 ref 来实现。</p>
+<h2 id="useImperativeHandle"><a href="#useImperativeHandle" class="headerlink" title="useImperativeHandle"></a>useImperativeHandle</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useImperativeHandle(ref, createHandle, [deps]);</span><br></pre></td></tr></table></figure>
+
+<p><code>useImperativeHandle</code> 可以自定义 ref 暴露给父组件的实例值，应当与 <code>forwardRef</code> 一起使用。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FancyInput</span>(<span class="params">props, ref</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> inputRef = useRef();</span><br><span class="line">  useImperativeHandle(ref, () =&gt; (&#123;</span><br><span class="line">    focus: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      inputRef.current.focus();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;));</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">ref</span>=<span class="string">&#123;inputRef&#125;</span> <span class="attr">...</span> /&gt;</span>;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml">FancyInput = forwardRef(FancyInput);</span></span><br></pre></td></tr></table></figure>
+
+<p>父组件可以调用 <code>inputRef.current.focus()</code>;</p>
+<h2 id="useDebugValue"><a href="#useDebugValue" class="headerlink" title="useDebugValue"></a>useDebugValue</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useDebugValue(value);</span><br></pre></td></tr></table></figure>
+
+<p><code>useDebugValue</code> 用于在 React 开发者工具中显示自定义 hook 的标签。</p>
+<h1 id="合成事件"><a href="#合成事件" class="headerlink" title="合成事件"></a>合成事件</h1><p>当需要使用浏览器的底层事件时，可使用 <code>nativeEvent</code> 属性来获取。</p>
+<p>事件处理函数将在冒泡阶段被触发，如需注册捕获阶段的事件处理函数，则应为事件名添加 <code>Capture</code>，例如，处理捕获阶段的点击事件应使用 <code>onClickCapture</code> 而不是 <code>onClick</code>。</p>
+<h2 id="事件池"><a href="#事件池" class="headerlink" title="事件池"></a>事件池</h2><p>出于性能考虑，<code>SyntheticEvent</code> 是合并而来，这意味着 <code>SyntheticEvent</code> 对象可能会被重用，且在事件回调函数被调用后，所有的属性都会无效（置为 <code>null</code>），所以<strong>不能通过异步访问事件</strong>。</p>
+<blockquote>
+<p>如果想异步访问事件属性，需在事件中调用 <code>event.persist()</code>，此方法会从池中移除该合成事件，允许用户代码保留对事件的引用。</p>
+</blockquote>
 <h1 id="使用状态管理工具的场景"><a href="#使用状态管理工具的场景" class="headerlink" title="使用状态管理工具的场景"></a>使用状态管理工具的场景</h1><ol>
-<li>某个组件的状态需要被共享；</li>
-<li>某个状态需要在任何地方都可以拿到；</li>
-<li>一个组件需要改变全局状态；</li>
-<li>一个组件需要改变另一个组件的状态；</li>
+<li><p>某个组件的状态需要被共享；</p>
+</li>
+<li><p>某个状态需要在任何地方都可以拿到；</p>
+</li>
+<li><p>一个组件需要改变全局状态；</p>
+</li>
+<li><p>一个组件需要改变另一个组件的状态；</p>
+</li>
 </ol>
 
     </article>
@@ -529,7 +683,7 @@ height:50vh;
             <p>原文作者：<a href="http://hitsuki9.github.io">Histuki9</a>
             <p>原文链接：<a href="http://hitsuki9.github.io/react/">http://hitsuki9.github.io/react/</a>
             <p>发表日期：<a href="http://hitsuki9.github.io/react/">December 26th 2019, 12:00:00 am</a>
-            <p>更新日期：<a href="http://hitsuki9.github.io/react/">March 15th 2020, 9:50:48 pm</a>
+            <p>更新日期：<a href="http://hitsuki9.github.io/react/">June 7th 2020, 1:09:24 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
      -->
@@ -546,8 +700,8 @@ height:50vh;
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/ecmascript-2015/" title= "《ECMAScript 6 入门》读书笔记">
-                    <div class="prevTitle">《ECMAScript 6 入门》读书笔记</div>
+                <a href= "/vue/" title= "Vue 知识点整理">
+                    <div class="prevTitle">Vue 知识点整理</div>
                 </a>
             
         </li>
@@ -655,7 +809,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#setState"><span class="toc-number">1.</span> <span class="toc-text">setState</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Context"><span class="toc-number">2.</span> <span class="toc-text">Context</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Portals"><span class="toc-number">3.</span> <span class="toc-text">Portals</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Refs-及转发"><span class="toc-number">4.</span> <span class="toc-text">Refs 及转发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建-Refs"><span class="toc-number">4.1.</span> <span class="toc-text">创建 Refs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#访问-Refs"><span class="toc-number">4.2.</span> <span class="toc-text">访问 Refs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#回调-Refs"><span class="toc-number">4.3.</span> <span class="toc-text">回调 Refs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Refs-转发"><span class="toc-number">4.4.</span> <span class="toc-text">Refs 转发</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#异步渲染"><span class="toc-number">5.</span> <span class="toc-text">异步渲染</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#错误边界"><span class="toc-number">6.</span> <span class="toc-text">错误边界</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#高阶组件的实现"><span class="toc-number">7.</span> <span class="toc-text">高阶组件的实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用状态管理工具的场景"><span class="toc-number">8.</span> <span class="toc-text">使用状态管理工具的场景</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#React-createElement"><span class="toc-number">1.</span> <span class="toc-text">React.createElement</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#React-cloneElement"><span class="toc-number">2.</span> <span class="toc-text">React.cloneElement</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#setState"><span class="toc-number">3.</span> <span class="toc-text">setState</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#生命周期"><span class="toc-number">4.</span> <span class="toc-text">生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#static-getDerivedStateFromProps"><span class="toc-number">4.1.</span> <span class="toc-text">static getDerivedStateFromProps</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getSnapshotBeforeUpdate"><span class="toc-number">4.2.</span> <span class="toc-text">getSnapshotBeforeUpdate</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Context"><span class="toc-number">5.</span> <span class="toc-text">Context</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Portals"><span class="toc-number">6.</span> <span class="toc-text">Portals</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Refs-及转发"><span class="toc-number">7.</span> <span class="toc-text">Refs 及转发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建-Refs"><span class="toc-number">7.1.</span> <span class="toc-text">创建 Refs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#访问-Refs"><span class="toc-number">7.2.</span> <span class="toc-text">访问 Refs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#回调-Refs"><span class="toc-number">7.3.</span> <span class="toc-text">回调 Refs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Refs-转发"><span class="toc-number">7.4.</span> <span class="toc-text">Refs 转发</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#异步渲染"><span class="toc-number">8.</span> <span class="toc-text">异步渲染</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#错误边界"><span class="toc-number">9.</span> <span class="toc-text">错误边界</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解决横切关注点的三种方式（逻辑复用）"><span class="toc-number">10.</span> <span class="toc-text">解决横切关注点的三种方式（逻辑复用）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#高阶组件"><span class="toc-number">11.</span> <span class="toc-text">高阶组件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#高阶组件的实现"><span class="toc-number">11.1.</span> <span class="toc-text">高阶组件的实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#React-memo"><span class="toc-number">12.</span> <span class="toc-text">React.memo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#render-props"><span class="toc-number">13.</span> <span class="toc-text">render props</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hooks"><span class="toc-number">14.</span> <span class="toc-text">Hooks</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#useState"><span class="toc-number">14.1.</span> <span class="toc-text">useState</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useEffect"><span class="toc-number">14.2.</span> <span class="toc-text">useEffect</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useLayoutEffect"><span class="toc-number">14.3.</span> <span class="toc-text">useLayoutEffect</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useContext"><span class="toc-number">14.4.</span> <span class="toc-text">useContext</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useReducer"><span class="toc-number">14.5.</span> <span class="toc-text">useReducer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useCallback"><span class="toc-number">14.6.</span> <span class="toc-text">useCallback</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useMemo"><span class="toc-number">14.7.</span> <span class="toc-text">useMemo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useRef"><span class="toc-number">14.8.</span> <span class="toc-text">useRef</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useImperativeHandle"><span class="toc-number">14.9.</span> <span class="toc-text">useImperativeHandle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useDebugValue"><span class="toc-number">14.10.</span> <span class="toc-text">useDebugValue</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#合成事件"><span class="toc-number">15.</span> <span class="toc-text">合成事件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#事件池"><span class="toc-number">15.1.</span> <span class="toc-text">事件池</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用状态管理工具的场景"><span class="toc-number">16.</span> <span class="toc-text">使用状态管理工具的场景</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -668,8 +822,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
     
     
     
@@ -766,6 +918,16 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "/ecmascript-2015/" >《ECMAScript 6 入门》读书笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/04</span><a class="archive-post-title" href= "/design-patterns/" >设计模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/15</span><a class="archive-post-title" href= "/css/" >CSS 知识点整理</a>
         </li>
     
@@ -781,11 +943,6 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">12/26</span><a class="archive-post-title" href= "/react/" >React 知识点整理</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">11/15</span><a class="archive-post-title" href= "/ecmascript-2015/" >《ECMAScript 6 入门》读书笔记</a>
         </li>
     
     
@@ -808,28 +965,14 @@ top:50vh;
             <span class="archive-post-date">09/19</span><a class="archive-post-title" href= "/git/" >Git 实用指南</a>
         </li>
     
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/hello-world/" >Hello World</a>
-        </li>
-    
     </div>
   </div>
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
-    
         <span class="sidebar-tag-name" data-tags="前端"><span class="iconfont-archer">&#xe606;</span>前端</span>
+    
+        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
     
         <span class="sidebar-tag-name" data-tags="正则"><span class="iconfont-archer">&#xe606;</span>正则</span>
     
@@ -866,9 +1009,9 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
-    
         <span class="sidebar-category-name" data-categories="创作集"><span class="iconfont-archer">&#xe60a;</span>创作集</span>
+    
+        <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
